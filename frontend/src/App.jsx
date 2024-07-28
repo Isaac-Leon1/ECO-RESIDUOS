@@ -1,12 +1,23 @@
-import './App.css'
+import { BrowserRouter } from "react-router-dom";
+import { Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
+import RegistroCiudadano from "./pages/RegistroCiudadano";
+import Auth from "./layouts/Auth";
 
 function App() {
-
   return (
     <>
-      <h1 className='text-3xl font-bold text-center'>ECORESIDUOS</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="ciudadano"
+            element={<Auth></Auth>}
+          ><Route path="registro"
+          element={<RegistroCiudadano></RegistroCiudadano>}></Route></Route>
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
