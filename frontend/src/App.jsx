@@ -49,6 +49,11 @@ function App() {
             element={<ReportesCiudadanos />}
             >
             </Route>
+            {/* <Route
+            path="/reportes"
+            element={<Reportes />}
+            >
+            </Route> */}
         </Route>
         </Routes>
 
