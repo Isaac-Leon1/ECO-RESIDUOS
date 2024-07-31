@@ -10,6 +10,7 @@ import ListarRutas from "./pages/ListarRutas";
 import { AuthProvider } from "./context/AuthProvider";
 import ReportesCiudadanos from "./pages/ReportesCiudadanos";
 import DetalleRuta from "./pages/DetalleRuta";
+import Inicio from "./pages/Inicio";
 
 function App() {
   return (
@@ -35,6 +36,11 @@ function App() {
             path="/"
             element={<Ciudadano />}
           >
+            <Route
+            path="/"
+            element={<Inicio />}
+            >
+            </Route>
             <Route
             path="/listar-rutas"
             element={<ListarRutas />}

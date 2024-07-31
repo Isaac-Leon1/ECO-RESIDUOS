@@ -6,7 +6,7 @@ import AuthContext from "../context/AuthProvider";
 
 const IniciarSesion = () => {
   const navigate = useNavigate()
-  const {setAuth, setEstado} = useContext(AuthContext)
+  const {setAuth} = useContext(AuthContext)
   const [alert, setAlert] = useState({
     message: "",
     exito: false,

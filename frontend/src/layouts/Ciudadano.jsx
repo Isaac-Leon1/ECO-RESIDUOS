@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const Ciudadano = () => {
   const [autenticado, setAutenticado] = useState(null);
+  const location = useLocation()
 
   useEffect(() => {
     setAutenticado(localStorage.getItem('token'));
-  }, []);
+  }, [location.pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -19,15 +20,15 @@ const Ciudadano = () => {
         <nav className="flex justify-between w-full">
           <div className="flex items-center gap-10">
             <img src="/logo3.png" alt="Logo" className="w-36" />
-            <ul className="flex gap-12 items-center text-white">
+            <ul className="flex gap-12 items-center text-white font-semibold">
               <li>
-                <Link to="/">Inicio</Link>
+                <Link to="/" className={location.pathname == '/' ? 'text-[#67DCE3]' : ''}>Inicio</Link>
               </li>
               <li>
-                <Link to="/listar-rutas">Listar rutas</Link>
+                <Link to="/listar-rutas" className={location.pathname == '/listar-rutas' ? 'text-[#67DCE3]' : ''}>Listar rutas</Link>
               </li>
               <li>
-                <Link to="/reportes-ciudadanos">Reportes de ciudadanos</Link>
+                <Link to="/reportes-ciudadanos" className={location.pathname == '/reportes-ciudadanos' ? 'text-[#67DCE3]' : ''}>Reportes de ciudadanos</Link>
               </li>
             </ul>
           </div>
@@ -38,7 +39,7 @@ const Ciudadano = () => {
                 Cerrar sesión
               </Link>
             ) : (
-              <Link to="/ciudadano/iniciarSesion" className="mr-8 bg-[#FF5630] p-2 rounded-xl text-white">
+              <Link to="/ciudadano/iniciarSesion" className="mr-8 bg-[#67DCE3] p-2 rounded-xl text-white">
                 Iniciar sesión
               </Link>
             )}
