@@ -7,35 +7,52 @@ import Auth from "./layouts/Auth";
 import RecuperarContrasena from "./pages/RecuperarContrasena";
 import Ciudadano from "./layouts/Ciudadano";
 import ListarRutas from "./pages/ListarRutas";
+import { AuthProvider } from "./context/AuthProvider";
+import ReportesCiudadanos from "./pages/ReportesCiudadanos";
+import DetalleRuta from "./pages/DetalleRuta";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+       <AuthProvider>
         <Routes>
           <Route path="ciudadano" element={<Auth></Auth>}>
             <Route
               path="registro"
-              element={<RegistroCiudadano></RegistroCiudadano>}
+              element={<RegistroCiudadano />}
             ></Route>
             <Route
               path="iniciarSesion"
-              element={<IniciarSesion></IniciarSesion>}
+              element={<IniciarSesion />}
             ></Route>
             <Route
               path="recuperarcontrasena"
-              element={<RecuperarContrasena></RecuperarContrasena>}
+              element={<RecuperarContrasena />}
             ></Route>
           </Route>
           <Route
-            path="rutas"
-            element={<Ciudadano></Ciudadano>}
-          ><Route
-          path="listar-rutas"
-          element={<ListarRutas></ListarRutas>}
-        ></Route>
+            path="/"
+            element={<Ciudadano />}
+          >
+            <Route
+            path="/listar-rutas"
+            element={<ListarRutas />}
+            >
+            </Route>
+            <Route
+            path="/ruta/:id"
+            element={<DetalleRuta />}
+            ></Route>
+            <Route
+            path="/reportes-ciudadanos"
+            element={<ReportesCiudadanos />}
+            >
+            </Route>
         </Route>
         </Routes>
+
+       </AuthProvider>
       </BrowserRouter>
     </>
   );
