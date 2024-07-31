@@ -30,7 +30,6 @@ const RegistroCiudadano = () => {
     }catch(error){
       setAlert({message:error.response.data.msg, exito:false});
     }
-;
   }
 
   return (

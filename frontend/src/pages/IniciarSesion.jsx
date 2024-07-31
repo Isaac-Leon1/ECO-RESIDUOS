@@ -1,7 +1,12 @@
-import { useState } from "react";
-import Alert from "../components/Alert";
 import axios from "axios";
+import { useContext, useState } from "react";
+import Alert from "../components/Alert";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthProvider";
+
 const IniciarSesion = () => {
+  const navigate = useNavigate()
+  const {setAuth, setEstado} = useContext(AuthContext)
   const [alert, setAlert] = useState({
     message: "",
     exito: false,
@@ -25,11 +30,19 @@ const IniciarSesion = () => {
         `${import.meta.env.VITE_BACKEND_URL}/ciudadano/login`,
         form
       );
-      console.log(response.data);
+      localStorage.setItem('token',response.data.token)
+      setAuth(response.data)
       setAlert({ message: response.data.msg, exito: true });
+      setTimeout(()=> {
+        navigate('/')
+      },3000)
     } catch (error) {
-      console.log(error.response.data);
       setAlert({ message: error.response.data.msg, exito: false });
+      setForm({
+        email:"",
+        password: ""
+      })
+      setTimeout(()=>setAlert({}),3000)
     }
   };
 
