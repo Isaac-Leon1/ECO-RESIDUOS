@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const conn_str = process.env.MONGO_URL
+const conn_str = process.env.MONGO_URL;
 
 mongoose.set('strictQuery', true)
 

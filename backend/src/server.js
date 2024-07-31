@@ -1,7 +1,8 @@
 // Requerir los módulos
 import express from 'express'
 import dotenv from 'dotenv'
-import cors from 'cors';
+import cors from 'cors'
+import morgan from 'morgan'
 
 import routerAdministradores from './routers/administrador_routes.js'
 import routerRutas from './routers/rutas_routes.js'
@@ -12,8 +13,9 @@ const app = express()
 dotenv.config()
 
 // Configuraciones 
-app.set('port',process.env.port || 3000)
+app.set('port',process.env.PORT || 3000)
 app.use(cors())
+app.use(morgan('dev'))
 
 // Middlewares 
 app.use(express.json())
