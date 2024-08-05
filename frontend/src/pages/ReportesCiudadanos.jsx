@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import FormularioReportes from '../components/FormularioReportes';
 
 const ReportesCiudadanos = () => {
     const [autenticado, setAutenticado] = useState(localStorage.getItem('token'));
@@ -41,11 +42,9 @@ const ReportesCiudadanos = () => {
     return (
         <div className='flex justify-center flex-col'>
             <h1 className='text-center text-3xl font-bold text-[#06457C] m-5'>Reportar Rutas</h1>
-            <p className='mx-16 m font-semibold'>Ante cualquier problema, presiona el botón Continuar para reportar los inconvenientes que hayas tenido</p>
-            <div className="flex gap-12 mx-16 my-8">
-                <button className='bg-[#06457C] hover:bg-blue-700 text-white font-bold py-2 px-16 rounded'>Continuar</button>
-                <button className='bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-16 rounded'>Cancelar</button>
-            </div>
+            <p className='mx-16 m font-semibold text-center'>Reporta cualquier incidente ocurrido en una ruta</p>
+            
+            <FormularioReportes/>
         </div>
     );
 };
