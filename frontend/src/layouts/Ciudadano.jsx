@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import AuthContext from "../context/AuthProvider";
 
 const Ciudadano = () => {
   const [autenticado, setAutenticado] = useState(null);
@@ -13,6 +14,9 @@ const Ciudadano = () => {
     localStorage.removeItem("token");
     setAutenticado(null);
   };
+
+  const { auth } = useContext(AuthContext)
+  console.log(auth)
 
   return (
     <>
@@ -51,6 +55,19 @@ const Ciudadano = () => {
                   Reportes de ciudadanos
                 </Link>
               </li>
+              {auth.rol == "administrador"  ?
+              <li>
+                <Link
+                  to="/reportes-ciudadanos"
+                  className={
+                    location.pathname == "/reportes-ciudadanos"
+                      ? "text-[#67DCE3]"
+                      : ""
+                  }
+                >
+                  Administrador
+                </Link>
+              </li> : ''}
             </ul>
           </div>
           <div className="flex gap-6 items-center">

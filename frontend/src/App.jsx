@@ -10,72 +10,57 @@ import { AuthProvider } from "./context/AuthProvider";
 import ReportesCiudadanos from "./pages/ReportesCiudadanos";
 import DetalleRuta from "./pages/DetalleRuta";
 import Inicio from "./pages/Inicio";
-import RegistroAdministrador from "./pages/RegistroAdministrador";
-import IniciarSesionAdministrador from "./pages/IniciarSesionAdministrador";
-import RecuperarContrasenaAdministrador from "./pages/RecuperarContrasenaAdministrador";
-import EmailConfirmado from "./pages/EmailConfirmado";
+import PrivateRouteWithRole from "./routes/PrivateRoutesWithRole";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <AuthProvider>
+          <Routes>
             <Route path="registro" element={<RegistroCiudadano />}></Route>
             <Route path="login" element={<IniciarSesion />}></Route>
             <Route
               path="recuperarcontrasena"
               element={<RecuperarContrasena />}
             ></Route>
-          <Route
-            path="/"
-            element={<Ciudadano />}
-          >
-            <Route
-            path="/"
-            element={<Inicio />}
-            >
+            <Route path="/" element={<Ciudadano />}>
+              <Route path="/" element={<Inicio />}></Route>
+              <Route path="/listar-rutas" element={<ListarRutas />}></Route>
+              <Route path="/ruta/:id" element={<DetalleRuta />}></Route>
+              <Route
+                path="/reportes-ciudadanos"
+                element={<ReportesCiudadanos />}
+              ></Route>
+              <Route
+                path="/crear-ruta"
+                element={
+                  <PrivateRouteWithRole>
+                    <div>Hola</div>
+                  </PrivateRouteWithRole>
+                }
+              ></Route>
             </Route>
-            <Route
-            path="/listar-rutas"
-            element={<ListarRutas />}
-            >
-            </Route>
-            <Route
-            path="/ruta/:id"
-            element={<DetalleRuta />}
-            ></Route>
-            <Route
-            path="/reportes-ciudadanos"
-            element={<ReportesCiudadanos />}
-            >
-            </Route>
-            {/* <Route
-            path="/reportes"
-            element={<Reportes />}
-            >
+            {/* <Route path="administrador">
+              <Route
+                path="registro"
+                element={<RegistroAdministrador />}
+              ></Route>
+              <Route
+                path="iniciarSesion"
+                element={<IniciarSesionAdministrador />}
+              ></Route>
+              <Route
+                path="recuperarcontrasena"
+                element={<RecuperarContrasenaAdministrador />}
+              ></Route>
+              <Route
+                path="confirmar/:token"
+                element={<EmailConfirmado />}
+              ></Route>
             </Route> */}
-            
-        </Route>
-        <Route path="administrador">
-          <Route
-            path="registro"
-            element={<RegistroAdministrador />}
-          ></Route>
-          <Route
-            path="iniciarSesion"
-            element={<IniciarSesionAdministrador />}
-          ></Route>
-          <Route
-            path="recuperarcontrasena"
-            element={<RecuperarContrasenaAdministrador />}
-          ></Route>
-          <Route
-            path="confirmar/:token"
-            element={<EmailConfirmado />}
-          ></Route>
-        </Route>
-
-       </AuthProvider>
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </>
   );

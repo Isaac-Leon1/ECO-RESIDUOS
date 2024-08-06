@@ -28,7 +28,7 @@ const login = async (req,res)=>{
     const {_id,nombre,apellido,direccion,telefono,email:emailBDD} = administradorBDD;
 
     // Actividad 4 (Respuesta)
-    res.status(200).json({_id,token,nombre,apellido,direccion,telefono,email:emailBDD})
+    res.status(200).json({_id,token,nombre,apellido,direccion,telefono,email:emailBDD,rol:'administrador'})
 }
 const perfil=(req,res)=>{
     const {

@@ -58,7 +58,8 @@ const login = async (req,res)=>{
     res.status(200).json({
         token,
         data: {nombre, apellido, correo, telefono},
-        msg:"Inicio de sesión exitoso"
+        msg:"Inicio de sesión exitoso",
+        rol:'ciudadano'
     })
 }
 

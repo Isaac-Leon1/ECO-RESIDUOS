@@ -25,10 +25,10 @@ const IniciarSesion = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const url = form.password.includes('admin') ? `${import.meta.env.VITE_BACKEND_URL}/login` : `${import.meta.env.VITE_BACKEND_URL}/ciudadano/login`
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/ciudadano/login`,
+      const response = await axios.post(url,
         form
       );
       localStorage.setItem("token", response.data.token);
