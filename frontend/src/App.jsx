@@ -11,6 +11,10 @@ import { AuthProvider } from "./context/AuthProvider";
 import ReportesCiudadanos from "./pages/ReportesCiudadanos";
 import DetalleRuta from "./pages/DetalleRuta";
 import Inicio from "./pages/Inicio";
+import RegistroAdministrador from "./pages/RegistroAdministrador";
+import IniciarSesionAdministrador from "./pages/IniciarSesionAdministrador";
+import RecuperarContrasenaAdministrador from "./pages/RecuperarContrasenaAdministrador";
+import EmailConfirmado from "./pages/EmailConfirmado";
 
 function App() {
   return (
@@ -31,6 +35,8 @@ function App() {
               path="recuperarcontrasena"
               element={<RecuperarContrasena />}
             ></Route>
+            
+
           </Route>
           <Route
             path="/"
@@ -60,7 +66,27 @@ function App() {
             element={<Reportes />}
             >
             </Route> */}
+            
         </Route>
+        <Route path="administrador" element={<Auth></Auth>}>
+          <Route
+            path="registro"
+            element={<RegistroAdministrador />}
+          ></Route>
+          <Route
+            path="iniciarSesion"
+            element={<IniciarSesionAdministrador />}
+          ></Route>
+          <Route
+            path="recuperarcontrasena"
+            element={<RecuperarContrasenaAdministrador />}
+          ></Route>
+          <Route
+            path="confirmar/:token"
+            element={<EmailConfirmado />}
+          ></Route>
+        </Route>
+
         </Routes>
 
        </AuthProvider>
