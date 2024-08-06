@@ -39,7 +39,7 @@ const Ciudadano = () => {
                 Cerrar sesión
               </Link>
             ) : (
-              <Link to="/ciudadano/iniciarSesion" className="mr-8 bg-[#67DCE3] p-2 rounded-xl text-white">
+              <Link to="/login" className="mr-8 bg-[#67DCE3] p-2 rounded-xl text-white">
                 Iniciar sesión
               </Link>
             )}

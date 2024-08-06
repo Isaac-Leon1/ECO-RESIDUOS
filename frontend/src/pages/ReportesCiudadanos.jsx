@@ -33,7 +33,7 @@ const ReportesCiudadanos = () => {
                     </div>
                     <h3 className="my-4 text-center text-3xl font-semibold text-gray-700">¿Deseas reportar algún problema?</h3>
                     <p className="w-full text-center font-normal text-gray-600">Puedes publicar reportes sobre inconvenientes en una ruta en específico o ayudarnos con sugerencias</p>
-                    <Link to="/ciudadano/iniciarSesion" className='mx-auto mt-10 block rounded-xl border-4 border-transparent bg-[#06457C] px-6 py-3 text-center text-base font-medium text-slate-50 outline-8 hover:outline hover:duration-300'>Iniciar Sesión</Link>
+                    <Link to="/login" className='mx-auto mt-10 block rounded-xl border-4 border-transparent bg-[#06457C] px-6 py-3 text-center text-base font-medium text-slate-50 outline-8 hover:outline hover:duration-300'>Iniciar Sesión</Link>
                 </div>
             </div>
         )

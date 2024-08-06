@@ -16,54 +16,51 @@ function App() {
   return (
     <>
       <BrowserRouter>
-       <AuthProvider>
-        <Routes>
-          <Route path="ciudadano" element={<Auth></Auth>}>
+        <AuthProvider>
+          <Routes>
             <Route
               path="registro"
               element={<RegistroCiudadano />}
             ></Route>
             <Route
-              path="iniciarSesion"
+              path="login"
               element={<IniciarSesion />}
             ></Route>
             <Route
               path="recuperarcontrasena"
               element={<RecuperarContrasena />}
-            ></Route>
+              ></Route>
+            <Route
+              path="/"
+              element={<Ciudadano />}
+            >
+              <Route
+              path="/"
+              element={<Inicio />}
+              >
+              </Route>
+              <Route
+              path="/listar-rutas"
+              element={<ListarRutas />}
+              >
+              </Route>
+              <Route
+              path="/ruta/:id"
+              element={<DetalleRuta />}
+              ></Route>
+              <Route
+              path="/reportes-ciudadanos"
+              element={<ReportesCiudadanos />}
+              >
+              </Route>
+              {/* <Route
+              path="/reportes"
+              element={<Reportes />}
+              >
+              </Route> */}
           </Route>
-          <Route
-            path="/"
-            element={<Ciudadano />}
-          >
-            <Route
-            path="/"
-            element={<Inicio />}
-            >
-            </Route>
-            <Route
-            path="/listar-rutas"
-            element={<ListarRutas />}
-            >
-            </Route>
-            <Route
-            path="/ruta/:id"
-            element={<DetalleRuta />}
-            ></Route>
-            <Route
-            path="/reportes-ciudadanos"
-            element={<ReportesCiudadanos />}
-            >
-            </Route>
-            {/* <Route
-            path="/reportes"
-            element={<Reportes />}
-            >
-            </Route> */}
-        </Route>
-        </Routes>
-
-       </AuthProvider>
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </>
   );
