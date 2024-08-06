@@ -86,8 +86,6 @@ function App() {
           ></Route>
         </Route>
 
-        </Routes>
-
        </AuthProvider>
       </BrowserRouter>
     </>
