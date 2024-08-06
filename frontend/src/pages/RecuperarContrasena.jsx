@@ -30,6 +30,8 @@ const RecuperarContrasena = () => {
 
   return (
     <>
+    <div className="min-h-screen flex justify-center w-full">
+
       <div className="w-[60%] min-h-screen bg-[url('/public/fondoRegistro.png')] bg-no-repeat bg-cover bg-center"></div>
       <div className="min-h-screen w-[40%] flex justify-center">
         <form
@@ -69,7 +71,7 @@ const RecuperarContrasena = () => {
           </button>
           <p className="text-[14px] text-center">
             ¿No tienes cuenta?{" "}
-            <a href="/ciudadano/registro" className="text-[#0464B8]">
+            <a href="/registro" className="text-[#0464B8]">
               {" "}
               Registrate aquí
             </a>
@@ -78,6 +80,7 @@ const RecuperarContrasena = () => {
           
         </form>
       </div>
+    </div>
     </>
   );
 };

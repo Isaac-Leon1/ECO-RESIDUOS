@@ -34,6 +34,7 @@ const RegistroCiudadano = () => {
 
   return (
     <>
+    <div className="min-h-screen flex justify-center w-full">
       <div className="w-[60%] min-h-screen bg-[url('/public/fondoRegistro.png')] bg-no-repeat bg-cover bg-center"></div>
       <div className="min-h-screen w-[40%] flex justify-center">
         <form className="flex flex-col gap-4 justify-center  min-h-screen w-3/5" onSubmit={handleSubmit}>
@@ -185,10 +186,11 @@ const RegistroCiudadano = () => {
           </div>
           <button className="bg-[#06457C] text-white rounded-lg p-3 mt-12">Registrarse
           </button>
-          <p className="text-[14px] text-center">¿Ya tienes cuenta? <a href="/ciudadano/iniciarSesion" className="text-[#0464B8]"> Inicia Sesión</a></p>
+          <p className="text-[14px] text-center">¿Ya tienes cuenta? <a href="/login" className="text-[#0464B8]"> Inicia Sesión</a></p>
           {alert.message && <Alert exito={alert.exito}>{alert.message}</Alert>}
         </form>
       </div>
+    </div>
     </>
   );
 };

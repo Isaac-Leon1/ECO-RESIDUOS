@@ -20,15 +20,14 @@ function App() {
   return (
     <>
       <BrowserRouter>
-       <AuthProvider>
-        <Routes>
-          <Route path="ciudadano" element={<Auth></Auth>}>
+        <AuthProvider>
+          <Routes>
             <Route
               path="registro"
               element={<RegistroCiudadano />}
             ></Route>
             <Route
-              path="iniciarSesion"
+              path="login"
               element={<IniciarSesion />}
             ></Route>
             <Route

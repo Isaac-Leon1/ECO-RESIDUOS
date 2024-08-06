@@ -25,6 +25,7 @@ const IniciarSesion = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/ciudadano/login`,
@@ -48,6 +49,7 @@ const IniciarSesion = () => {
 
   return (
     <>
+    <div className="min-h-screen flex justify-center w-full">
       <div className="w-[60%] min-h-screen bg-[url('/public/fondoRegistro.png')] bg-no-repeat bg-cover bg-center"></div>
       <div className="min-h-screen w-[40%] flex justify-center">
         <form
@@ -146,16 +148,17 @@ const IniciarSesion = () => {
           </button>
           <p className="text-[14px] text-center">
             ¿No tienes cuenta?{" "}
-            <a href="/ciudadano/registro" className="text-[#0464B8]">
+            <a href="/registro" className="text-[#0464B8]">
               {" "}
               Registrate aquí
             </a>
           </p>
-          <a href="/ciudadano/recuperarcontrasena" className="text-[#0464B8] text-[14px] text-center">¿Olvidó la contraseña?</a>
+          <a href="/recuperarcontrasena" className="text-[#0464B8] text-[14px] text-center">¿Olvidó la contraseña?</a>
           {alert.message && <Alert exito={alert.exito}>{alert.message}</Alert>}
           
         </form>
       </div>
+    </div>
     </>
   );
 };
