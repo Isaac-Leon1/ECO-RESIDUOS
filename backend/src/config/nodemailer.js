@@ -23,7 +23,7 @@ const sendMailToAdmin = (userMail, token) => {
     html: `
     <h1>Verifica tu cuenta</h1>
     <hr>
-    <p>Hola, haz clic <a href="${process.env.URL_FRONTEND}administrador/confirmar/${encodeURIComponent(token)}">aquí</a> para confirmar tu cuenta.</p>
+    <p>Hola, haz clic <a href="${process.env.URL_FRONTEND}/confirmar/${encodeURIComponent(token)}">aquí</a> para confirmar tu cuenta.</p>
     <hr>
     <footer>Residuos</footer>
     `, // Cuerpo del correo
@@ -48,7 +48,7 @@ const sendMailToRecoveryPassword = async (userMail, token) => {
     html: `
     <h1>Sistema de gestion de residuos</h1>
     <hr>
-    <a href=${process.env.URL_FRONTEND}recuperar-password/${token}>Clic para reestablecer tu contraseña</a>
+    <a href=${process.env.URL_FRONTEND}nueva-contrasena/${token}>Clic para reestablecer tu contraseña</a>
     <hr>
     <footer>Residuos</footer>
     `,

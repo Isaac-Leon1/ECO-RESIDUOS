@@ -163,7 +163,6 @@ const nuevoPassword = async (req,res)=>{
     res.status(200).json({msg:'Contraseña actualizada, ya puedes iniciar sesión'})
 }
 
-
 export {
     registro,
     login,

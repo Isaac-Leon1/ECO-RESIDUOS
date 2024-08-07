@@ -6,7 +6,7 @@ import {
     verificarToken,
     recuperarPassword,
     comprobarTokenPasword,
-    nuevoPassword
+    nuevoPassword,
 } from '../controllers/ciudadano_controller.js'
 import verificarAutenticacion from '../middlewares/auth.js'
 import { validacionCiudadano } from '../middlewares/validacionCiudadanos.js'
@@ -16,8 +16,8 @@ const router = Router()
 router.post('/ciudadano/register',validacionCiudadano,registro)
 router.post('/ciudadano/login',login)
 router.get('/ciudadano/verify/:token',verificarToken)
-router.post('/ciudadano/recuperarcontrasena',recuperarPassword)
 router.get('/ciudadano/confirmar/:token',comprobarTokenPasword)
+router.post('/ciudadano/recuperarcontrasena',recuperarPassword)
 router.post('/ciudadano/nuevapassword/:token',nuevoPassword)
 
 router.post('/ciudadano/reports',verificarAutenticacion,reportarIncidente)

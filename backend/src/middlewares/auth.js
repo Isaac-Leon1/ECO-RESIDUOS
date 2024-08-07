@@ -12,10 +12,12 @@ const verificarAutenticacion = async (req,res,next)=>{
         const {id,rol} = jwt.verify(authorization.split(' ')[1],process.env.JWT_SECRET)
         if (rol==="administrador"){
             req.admin = await Administrador.findById(id).lean().select("-password")
+            req.admin["rol"] = rol
             next() // Continuar con la siguiente función
         }
         else{
             req.ciudadano = await Ciudadano.findById(id).lean().select("-password")
+            req.ciudadano["rol"] = rol
             next() // Continuar con la siguiente función
         }
     } catch (error) {

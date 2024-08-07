@@ -15,6 +15,8 @@ import verificarAutenticacion from '../middlewares/auth.js'
 import { validacionAdministrador } from '../middlewares/validacionAdministrador.js'
 
 const router = Router()
+//Goblal
+router.get('/perfil',verificarAutenticacion,perfil)
 
 router.post('/login',login)
 router.post('/registro',validacionAdministrador,registro)
@@ -23,7 +25,6 @@ router.post('/recuperar-password',recuperarPassword)
 router.get('/recuperar-password/:token',comprobarTokenPasword)
 router.post('/nuevo-password/:token',nuevoPassword)
 router.get('/administrador/reportes',verificarAutenticacion,listarReportes)
-router.get('/perfil',verificarAutenticacion,perfil)
 router.put('/administrador/actualizarpassword',verificarAutenticacion,actualizarPassword)
 router.put('/administrador/:id',verificarAutenticacion,actualizarPerfil)
 
