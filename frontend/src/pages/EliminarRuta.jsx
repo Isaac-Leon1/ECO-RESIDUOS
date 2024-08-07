@@ -37,6 +37,7 @@ export default function EliminarRuta() {
   },[])
   return (
     <>
+    
       <div>
         <span className="mx-16">Busca la ruta que deseas eliminar</span>
         <BuscarRuta 
@@ -45,7 +46,7 @@ export default function EliminarRuta() {
         form={form}
         setForm={setForm}
         />
-        <RutasTable rutas={rutas} alert={alert} type={'eliminar'} setRutaUpdate={setRutaId}/>
+        <RutasTable setRutas={setRutas} rutas={rutas} alert={alert} setAlert={setAlert} type={'eliminar'} setRutaUpdate={setRutaId}/>
       </div>
     </>
   );

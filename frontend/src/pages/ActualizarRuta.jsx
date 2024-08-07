@@ -46,7 +46,7 @@ export default function ActualizarRuta() {
         setForm={setForm}
         />
         {rutaUpdate ? (
-          <RutaForm type={'actualizar'} setRutaUpdate={setRutaUpdate}/>
+          <RutaForm type={'actualizar'} setRutaUpdate={setRutaUpdate} rutaUpdate={rutaUpdate}/>
         ):
         (
           <RutasTable rutas={rutas} alert={alert} type={'actualizar'} setRutaUpdate={setRutaUpdate}/>

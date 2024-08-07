@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import Alert from "./Alert";
 
-export default function RutaForm({type, setRutaUpdate}) {
+export default function RutaForm({type, setRutaUpdate, rutaUpdate}) {
   const [timeStart, setTimeStart] = useState("");
   const [timeEnd, setTimeEnd] = useState("");
   const [alert, setAlert] = useState("");

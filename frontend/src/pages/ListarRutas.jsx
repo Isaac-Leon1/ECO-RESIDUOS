@@ -3,7 +3,7 @@ import axios from "axios";
 import RutasTable from "../components/RutasTable";
 
 const ListarRutas = () => {
-  const [rutas, setrutas] = useState([])
+  const [rutas, setRutas] = useState([])
   const [alert, setAlert] = useState({
     message: "",
     exito:false,
@@ -18,7 +18,7 @@ const ListarRutas = () => {
         }
       }
       const respuesta = await axios.get(url,options)
-      setrutas(respuesta.data)
+      setRutas(respuesta.data)
     } catch (error) {
       setAlert({message:error.response.data.msg, exito:false});
     }
@@ -34,7 +34,9 @@ const ListarRutas = () => {
         <p className='mx-16 m font-semibold'>Aquí podrás visualizar una lista de todas las rutas</p>
       </div>
       <RutasTable 
+      setRutas={setRutas}
       rutas={rutas}
+      setAlert={setAlert}
       alert={alert}
       type={'detalle'}
       />
