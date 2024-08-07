@@ -14,6 +14,7 @@ import Header from "./layouts/Header";
 import { GestionarRutas } from "./pages/GestionarRutas";
 import RegistrarRuta from "./pages/RegistrarRuta";
 import NuevaContrasena from "./pages/NuevaContrasena";
+import ActualizarRuta from "./pages/ActualizarRuta";
 
 function App() {
   return (
@@ -42,7 +43,7 @@ function App() {
                 }
               >
                 <Route path="registrar" element={<RegistrarRuta/>} />
-                <Route path="actualizar" element={<div>Actualizar</div>} />
+                <Route path="actualizar" element={<ActualizarRuta />} />
                 <Route path="eliminar" element={<div>Eliminar</div>} />
               </Route>
             </Route>
