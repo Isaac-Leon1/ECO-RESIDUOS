@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import Alert from "./Alert";
 
 export default function RutasTable({rutas, alert, type, setRutaUpdate}) {
-
+  const handleDelete = () => {
+    //Delete
+  }
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-6">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500">
@@ -56,7 +58,7 @@ export default function RutasTable({rutas, alert, type, setRutaUpdate}) {
                     type === 'detalle' ? (
                     <Link
                       to={`/ruta/${ruta._id}`}
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      className="font-medium text-blue-600 hover:underline"
                     >
                       Ver más
                     </Link>
@@ -64,17 +66,19 @@ export default function RutasTable({rutas, alert, type, setRutaUpdate}) {
                     type === 'actualizar' ? (
                       <button
                       onClick={(() => setRutaUpdate(ruta._id))}
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      className="font-medium text-blue-600 hover:underline"
                     >
                       Actualizar
                     </button>
                     ) :
-                    <Link
-                      to={`/ruta/${ruta._id}`}
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    type === 'eliminar' ?
+                    <button
+                      onClick={(handleDelete)}
+                      className="font-medium text-red-600 hover:underline"
                     >
-                      ???
-                    </Link>
+                      Eliminar
+                    </button>
+                    : ''
                   }
                 </td>
               </tr>
