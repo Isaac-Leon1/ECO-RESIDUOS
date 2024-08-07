@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import AuthContext from "../context/AuthProvider";
 
-const Ciudadano = () => {
+const Header = () => {
   const [autenticado, setAutenticado] = useState(null);
   const location = useLocation();
 
@@ -15,8 +15,7 @@ const Ciudadano = () => {
     setAutenticado(null);
   };
 
-  const { auth } = useContext(AuthContext)
-  console.log(auth)
+  const { auth } = useContext(AuthContext);
 
   return (
     <>
@@ -34,40 +33,45 @@ const Ciudadano = () => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/listar-rutas"
-                  className={
-                    location.pathname == "/listar-rutas" ? "text-[#67DCE3]" : ""
-                  }
-                >
-                  Listar rutas
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/reportes-ciudadanos"
-                  className={
-                    location.pathname == "/reportes-ciudadanos"
-                      ? "text-[#67DCE3]"
-                      : ""
-                  }
-                >
-                  Reportes de ciudadanos
-                </Link>
-              </li>
-              {auth.rol == "administrador"  ?
-              <li>
-                <Link
-                  to="/reportes-ciudadanos"
-                  className={
-                    location.pathname == "/reportes-ciudadanos"
-                      ? "text-[#67DCE3]"
-                      : ""
-                  }
-                >
-                  Administrador
-                </Link>
-              </li> : ''}
+                    <Link
+                      to="/listar-rutas"
+                      className={
+                        location.pathname == "/listar-rutas"
+                          ? "text-[#67DCE3]"
+                          : ""
+                      }
+                    >
+                      Listar rutas
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/reportes-ciudadanos"
+                      className={
+                        location.pathname == "/reportes-ciudadanos"
+                          ? "text-[#67DCE3]"
+                          : ""
+                      }
+                    >
+                      Reportes de ciudadanos
+                    </Link>
+                  </li>
+              {auth.rol == "administrador" ? (
+                <>
+                  <li>
+                    <Link
+                      to="/gestionar-rutas"
+                      className={
+                        location.pathname == "/gestionar-rutas"
+                          ? "text-[#67DCE3]"
+                          : ""
+                      }
+                    >
+                      Gestionar Rutas
+                    </Link>
+                  </li>
+                </>
+              ) : ''}
             </ul>
           </div>
           <div className="flex gap-6 items-center">
@@ -111,4 +115,4 @@ const ProfileIcon = () => (
   </svg>
 );
 
-export default Ciudadano;
+export default Header;

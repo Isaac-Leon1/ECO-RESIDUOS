@@ -25,24 +25,19 @@ const IniciarSesion = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = form.password.includes('admin') ? `${import.meta.env.VITE_BACKEND_URL}/login` : `${import.meta.env.VITE_BACKEND_URL}/ciudadano/login`
+    const url = form.password.includes("admin")
+      ? `${import.meta.env.VITE_BACKEND_URL}/login`
+      : `${import.meta.env.VITE_BACKEND_URL}/ciudadano/login`;
 
     try {
-      const response = await axios.post(url,
-        form
-      );
+      const response = await axios.post(url, form);
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("role", response.data.rol);
       setAuth(response.data);
       setAlert({ message: response.data.msg, exito: true });
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
+      navigate("/");
     } catch (error) {
       setAlert({ message: error.response.data.msg, exito: false });
-      setForm({
-        email: "",
-        password: "",
-      });
       setTimeout(() => setAlert({}), 3000);
     }
   };

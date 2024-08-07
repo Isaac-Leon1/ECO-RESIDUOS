@@ -4,13 +4,16 @@ import { Route } from "react-router-dom";
 import RegistroCiudadano from "./pages/RegistroCiudadano";
 import IniciarSesion from "./pages/IniciarSesion";
 import RecuperarContrasena from "./pages/RecuperarContrasena";
-import Ciudadano from "./layouts/Ciudadano";
 import ListarRutas from "./pages/ListarRutas";
 import { AuthProvider } from "./context/AuthProvider";
 import ReportesCiudadanos from "./pages/ReportesCiudadanos";
 import DetalleRuta from "./pages/DetalleRuta";
 import Inicio from "./pages/Inicio";
 import PrivateRouteWithRole from "./routes/PrivateRoutesWithRole";
+import Header from "./layouts/Header";
+import { GestionarRutas } from "./pages/GestionarRutas";
+import RegistrarRuta from "./pages/RegistrarRuta";
+import NuevaContrasena from "./pages/NuevaContrasena";
 
 function App() {
   return (
@@ -18,28 +21,30 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Routes>
-            <Route path="registro" element={<RegistroCiudadano />}></Route>
-            <Route path="login" element={<IniciarSesion />}></Route>
-            <Route
-              path="recuperarcontrasena"
-              element={<RecuperarContrasena />}
-            ></Route>
-            <Route path="/" element={<Ciudadano />}>
-              <Route path="/" element={<Inicio />}></Route>
-              <Route path="/listar-rutas" element={<ListarRutas />}></Route>
-              <Route path="/ruta/:id" element={<DetalleRuta />}></Route>
+            <Route path="registro" element={<RegistroCiudadano />} />
+            <Route path="login" element={<IniciarSesion />} />
+            <Route path="recuperarcontrasena" element={<RecuperarContrasena />} />
+            <Route path="nueva-contrasena/:token" element={<NuevaContrasena />} />
+            <Route path="/" element={<Header />}>
+              <Route index element={<Inicio />}></Route>
+              <Route path="listar-rutas" element={<ListarRutas />}></Route>
+              <Route path="ruta/:id" element={<DetalleRuta />}></Route>
               <Route
-                path="/reportes-ciudadanos"
+                path="reportes-ciudadanos"
                 element={<ReportesCiudadanos />}
               ></Route>
               <Route
-                path="/crear-ruta"
+                path="gestionar-rutas"
                 element={
                   <PrivateRouteWithRole>
-                    <div>Hola</div>
+                    <GestionarRutas />
                   </PrivateRouteWithRole>
                 }
-              ></Route>
+              >
+                <Route path="registrar" element={<RegistrarRuta/>} />
+                <Route path="actualizar" element={<div>Actualizar</div>} />
+                <Route path="eliminar" element={<div>Eliminar</div>} />
+              </Route>
             </Route>
             {/* <Route path="administrador">
               <Route

@@ -6,7 +6,7 @@ import { Forbidden } from '../pages/Forbidden';
 export default function PrivateRouteWithRole({ children }) {
     const { auth } = useContext(AuthContext)
 
-    if ("administrador" === auth.rol) {
+    if (auth.rol !== "administrador") {
         return <Forbidden/>
     } else {
         return children
