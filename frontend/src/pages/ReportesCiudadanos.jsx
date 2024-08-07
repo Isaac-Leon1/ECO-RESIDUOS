@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FormularioReportes from "../components/FormularioReportes";
+import AuthContext from "../context/AuthProvider";
 
 const ReportesCiudadanos = () => {
+  const {auth} = useContext(AuthContext)
   const [autenticado, setAutenticado] = useState(localStorage.getItem("token"));
 
   useEffect(() => {
@@ -103,8 +105,8 @@ const ReportesCiudadanos = () => {
       <p className="mx-16 m font-semibold text-center">
         Reporta cualquier incidente ocurrido en una ruta
       </p>
-
-      <FormularioReportes />
+      {auth.rol === 'administrador' ? <div>Reportes</div> : <FormularioReportes />}
+      
     </div>
   );
 };
