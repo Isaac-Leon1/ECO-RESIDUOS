@@ -19,9 +19,9 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-[#06457C] h-[77px] flex items-center">
-        <nav className="flex justify-between w-full">
-          <div className="flex items-center gap-10">
+      <header className="bg-[#06457C] min-h-[77px] flex items-center p-4">
+        <nav className="flex justify-between w-full md:flex-row flex-col items-center gap-y-4 ">
+          <div className="flex items-center gap-x-10 gap-y-4 md:flex-row flex-col">
             <img src="/logo3.png" alt="Logo" className="w-36" />
             <ul className="flex gap-12 items-center text-white font-semibold">
               <li>

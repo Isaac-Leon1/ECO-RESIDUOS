@@ -37,9 +37,9 @@ const RegistroCiudadano = () => {
 
   return (
     <>
-      <div className="min-h-screen flex justify-center w-full">
-        <div className="w-[60%] min-h-screen bg-[url('/public/fondoRegistro.png')] bg-no-repeat bg-cover bg-center"></div>
-        <div className="min-h-screen w-[40%] flex justify-center">
+      <div className="min-h-screen flex justify-center w-full ">
+        <div className="md:block hidden w-[60%] min-h-screen bg-[url('/public/fondoRegistro.png')] bg-no-repeat bg-cover bg-center"></div>
+        <div className="min-h-screen md:w-[40%] w-full flex justify-center">
           <form
             className="flex flex-col gap-4 justify-center  min-h-screen w-3/5"
             onSubmit={handleSubmit}

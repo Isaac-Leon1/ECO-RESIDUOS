@@ -12,11 +12,11 @@ const administradorSchema = new Schema({
         require:true,
         trim:true
     },
-    direccion:{
-        type:String,
-        trim:true,
-        default:null
-    },
+    // direccion:{
+    //     type:String,
+    //     trim:true,
+    //     default:null
+    // },
     telefono:{
         type:Number,
         trim:true,

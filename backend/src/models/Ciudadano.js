@@ -12,6 +12,11 @@ const ciudadanoSchema= new Schema({
         require:true,
         trim:true
     },
+    direccion:{
+        type:String,
+        trim:true,
+        default:null
+    },
     email:{
         type:String,
         require:true,

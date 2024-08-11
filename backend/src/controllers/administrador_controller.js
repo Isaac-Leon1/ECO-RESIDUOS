@@ -30,19 +30,19 @@ const login = async (req,res)=>{
     // Actividad 4 (Respuesta)
     res.status(200).json({_id,token,nombre,apellido,direccion,telefono,email:emailBDD,rol:'administrador'})
 }
-const perfil=(req,res)=>{
-    const {nombre, apellido, direccion, telefono, email, rol} = req.ciudadano || req.admin
-    res.status(200).json(
-        {
-            nombre,
-            apellido,
-            direccion,
-            telefono,
-            email,
-            rol
-        }
-    )
-}
+// const perfil=(req,res)=>{
+//     const {nombre, apellido, direccion, telefono, email, rol} = req.ciudadano || req.admin
+//     res.status(200).json(
+//         {
+//             nombre,
+//             apellido,
+//             direccion,
+//             telefono,
+//             email,
+//             rol
+//         }
+//     )
+// }
 const registro = async (req,res)=>{
     // Actividad 1 (Request)
     const {
@@ -85,58 +85,58 @@ const confirmEmail = async (req,res)=>{
     await administradorBDD.save()
     res.status(200).json({res:'Email confirmado correctamente'})
 }
-const actualizarPerfil = async (req,res)=>{
-    const {id} = req.params
-    const {
-        nombre,
-        apellido,
-        direccion,
-        telefono
-    } = req.body
-    if (Object.values(req.body).includes("")) return res.status(400).json({msg:"Lo sentimos, debes llenar todos los campos"})
-    if (!moongose.Types.ObjectId.isValid(id)) return res.status(404).json({msg:`Lo sentimos, el id ${id} no es válido`})
+// const actualizarPerfil = async (req,res)=>{
+//     const {id} = req.params
+//     const {
+//         nombre,
+//         apellido,
+//         direccion,
+//         telefono
+//     } = req.body
+//     if (Object.values(req.body).includes("")) return res.status(400).json({msg:"Lo sentimos, debes llenar todos los campos"})
+//     if (!moongose.Types.ObjectId.isValid(id)) return res.status(404).json({msg:`Lo sentimos, el id ${id} no es válido`})
     
-    await Administrador.findByIdAndUpdate(id,{nombre,apellido,direccion,telefono})
+//     await Administrador.findByIdAndUpdate(id,{nombre,apellido,direccion,telefono})
 
-    res.status(200).json({msg:"Perfil actualizado correctamente"})
-}
-const actualizarPassword = async (req,res)=>{
-    // Actividad 1 (Request)
-    const {
-        email,
-        password,
-        newpassword,
-        confirmpassword
-    } = req.body
-    // Actividad 2 (Validaciones)
-    //? Validar si los campos están vacíos
-    if (Object.values(req.body).includes('')){
-        return res.status(400).json({error:'Lo sentimos pero faltan datos'})
-    }
-    //? Validar si el email existe
-    const administradorBDD = await Administrador.findOne({email})
-    if (!administradorBDD){
-        return res.status(404).json({error:'Lo sentimos, el email no existe'})
-    }
-    //? Validar si la contraseña es la misma
-    const validarPassword = await administradorBDD.matchPassword(password)
-    if (!validarPassword){
-        return res.status(403).json({error:'Lo sentimos, la contraseña es incorrecta'})
-    }
-    //? Validar si la contraseña es la misma
-    if (password === newpassword){
-        return res.status(400).json({error:'Lo sentimos, la contraseña es la misma'})
-    }
-    //? Validar si las contraseñas coinciden
-    if (newpassword !== confirmpassword){
-        return res.status(400).json({error:'Lo sentimos, las contraseñas no coinciden'})
-    }
-    // Actividad 3 (Base de Datos)
-    administradorBDD.password = await administradorBDD.encrypPassword(newpassword)
-    await administradorBDD.save()
-    // Actividad 4 (Respuesta)
-    res.status(200).json({msg:'Contraseña actualizada'})
-}
+//     res.status(200).json({msg:"Perfil actualizado correctamente"})
+// }
+// const actualizarPassword = async (req,res)=>{
+//     // Actividad 1 (Request)
+//     const {
+//         email,
+//         password,
+//         newpassword,
+//         confirmpassword
+//     } = req.body
+//     // Actividad 2 (Validaciones)
+//     //? Validar si los campos están vacíos
+//     if (Object.values(req.body).includes('')){
+//         return res.status(400).json({error:'Lo sentimos pero faltan datos'})
+//     }
+//     //? Validar si el email existe
+//     const administradorBDD = await Administrador.findOne({email})
+//     if (!administradorBDD){
+//         return res.status(404).json({error:'Lo sentimos, el email no existe'})
+//     }
+//     //? Validar si la contraseña es la misma
+//     const validarPassword = await administradorBDD.matchPassword(password)
+//     if (!validarPassword){
+//         return res.status(403).json({error:'Lo sentimos, la contraseña es incorrecta'})
+//     }
+//     //? Validar si la contraseña es la misma
+//     if (password === newpassword){
+//         return res.status(400).json({error:'Lo sentimos, la contraseña es la misma'})
+//     }
+//     //? Validar si las contraseñas coinciden
+//     if (newpassword !== confirmpassword){
+//         return res.status(400).json({error:'Lo sentimos, las contraseñas no coinciden'})
+//     }
+//     // Actividad 3 (Base de Datos)
+//     administradorBDD.password = await administradorBDD.encrypPassword(newpassword)
+//     await administradorBDD.save()
+//     // Actividad 4 (Respuesta)
+//     res.status(200).json({msg:'Contraseña actualizada'})
+// }
 const recuperarPassword = async (req,res)=>{
     // Actividad 1 (Request)
     const {email} = req.body
