@@ -5,6 +5,17 @@ const listarRutas = async (req,res)=>{
     const rutas = await Rutas.find({estado:true}).where('rutas').equals(req.rutasBDD).select("-createdAt -updatedAt -__v")
     res.status(200).json(rutas)
 }
+const listarRutasQuery = async (req,res)=>{
+    const q = req.query.q
+    const ruta = new RegExp(q, 'i')
+    try {
+        const rutas = await Rutas.find({estado:true, nombre:ruta}).select("-createdAt -updatedAt -__v").lean()
+        res.status(200).json(rutas)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
 const detalleRuta = async (req,res)=>{
     const {id} = req.params
     if( !mongoose.Types.ObjectId.isValid(id) ) return res.status(404).json({msg:`Lo sentimos, debe ser un id válido`});
@@ -37,6 +48,7 @@ const eliminarRuta = async (req,res)=>{
 }
 export {
     listarRutas,
+    listarRutasQuery,
     detalleRuta,
     registrarRuta,
     actualizarRuta,

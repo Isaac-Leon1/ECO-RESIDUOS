@@ -7,7 +7,7 @@ import axios from "axios";
 export default function ActualizarRuta() {
   const [rutas, setRutas] = useState([])
   const [isSearch, setIsSearch] = useState(false)
-  const [rutaUpdate, setRutaUpdate] = useState('');
+  const [rutaUpdate, setRutaUpdate] = useState({});
   const [form, setForm] = useState({
     search:''
   })
@@ -31,10 +31,10 @@ export default function ActualizarRuta() {
       setAlert({message:error.response.data.msg, exito:false});
     }
   }
-
   useEffect(()=>{
     listarRutas()
   },[])
+
   return (
     <>
       <div>
@@ -44,9 +44,10 @@ export default function ActualizarRuta() {
         setIsSearch={setIsSearch}
         form={form}
         setForm={setForm}
+        setRutas={setRutas}
         />
-        {rutaUpdate ? (
-          <RutaForm type={'actualizar'} setRutaUpdate={setRutaUpdate} rutaUpdate={rutaUpdate}/>
+        {Object.keys(rutaUpdate).length > 0 ? (
+          <RutaForm type={'actualizar'} rutaUpdate={rutaUpdate} setRutaUpdate={setRutaUpdate}/>
         ):
         (
           <RutasTable rutas={rutas} alert={alert} type={'actualizar'} setRutaUpdate={setRutaUpdate}/>
