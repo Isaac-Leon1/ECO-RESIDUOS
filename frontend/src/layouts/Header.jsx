@@ -34,14 +34,14 @@ const Header = () => {
               </li>
               <li>
                     <Link
-                      to="/listar-rutas"
+                      to="/rutas"
                       className={
                         location.pathname == "/listar-rutas"
                           ? "text-[#67DCE3]"
                           : ""
                       }
                     >
-                      Listar rutas
+                      Rutas de Recolección
                     </Link>
                   </li>
                   <li>

@@ -164,17 +164,36 @@ const nuevoPassword = async (req,res)=>{
     res.status(200).json({msg:'Contraseña actualizada, ya puedes iniciar sesión'})
 }
 const perfil=(req,res)=>{
-    const {nombre, apellido, direccion, telefono, email, rol} = req.ciudadano 
-    res.status(200).json(
-        {
-            nombre,
-            apellido,
-            direccion,
-            telefono,
-            email,
-            rol
+    try {
+        if (req.ciudadano){
+            const {nombre, apellido, direccion, telefono, email, rol} = req.ciudadano 
+            res.status(200).json(
+                {
+                    nombre,
+                    apellido,
+                    direccion,
+                    telefono,
+                    email,
+                    rol
+                }
+            )
+        }else if (req.admin){
+            const {nombre, apellido, telefono, email, rol} = req.admin 
+            res.status(200).json(
+                {
+                    nombre,
+                    apellido,
+                    telefono,
+                    email,
+                    rol
+                }
+            )
+        }else{
+            res.status(400).json({msg:"Sesión no iniciada"})
         }
-    )
+    } catch (error) {
+        res.status(400).json({msg: error})
+    }
 }
 const actualizarPerfil = async (req,res)=>{
     const {id} = req.params

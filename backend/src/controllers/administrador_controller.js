@@ -216,11 +216,8 @@ const listarReportes = async (req,res) => {
 
 export {
     login,
-    perfil,
     registro,
     confirmEmail,
-    actualizarPerfil,
-    actualizarPassword,
 	recuperarPassword,
     comprobarTokenPasword,
 	nuevoPassword,

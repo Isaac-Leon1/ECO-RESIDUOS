@@ -30,7 +30,7 @@ const DetalleRuta = () => {
     <>
       <div className="flex justify-center flex-col">
         <Link
-          to={"/listar-rutas"}
+          to={"/rutas"}
           className="flex gap-6 bg-[#67DCE3] hover:bg-[#a7fbff] text-black font-bold py-3 px-14 mx-16 rounded absolute"
         >
           <svg

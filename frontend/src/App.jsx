@@ -29,7 +29,7 @@ function App() {
             <Route path="nueva-contrasena/:token" element={<NuevaContrasena />} />
             <Route path="/" element={<Header />}>
               <Route index element={<Inicio />}></Route>
-              <Route path="listar-rutas" element={<ListarRutas />}></Route>
+              <Route path="rutas" element={<ListarRutas />}></Route>
               <Route path="ruta/:id" element={<DetalleRuta />}></Route>
               <Route
                 path="reportes-ciudadanos"
