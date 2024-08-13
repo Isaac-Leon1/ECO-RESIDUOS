@@ -17,6 +17,8 @@ import NuevaContrasena from "./pages/NuevaContrasena";
 import ActualizarRuta from "./pages/ActualizarRuta";
 import EliminarRuta from "./pages/EliminarRuta";
 import Perfil from "./pages/Perfil";
+import PrivateRouteWithCRole from "./routes/PrivateRouteWithCRole";
+import { Forbidden } from "./pages/Forbidden";
 
 function App() {
   return (
@@ -36,7 +38,7 @@ function App() {
                 path="reportes-ciudadanos"
                 element={<ReportesCiudadanos />}
               ></Route>
-              <Route path="perfil" element={<Perfil />}/>
+              <Route path="perfil" element={<PrivateRouteWithCRole><Perfil /></PrivateRouteWithCRole>}/>
               <Route
                 path="gestionar-rutas"
                 element={
@@ -49,25 +51,9 @@ function App() {
                 <Route path="actualizar" element={<ActualizarRuta />} />
                 <Route path="eliminar" element={<EliminarRuta />} />
               </Route>
+              <Route path="*" element={<Forbidden />}/>
             </Route>
-            {/* <Route path="administrador">
-              <Route
-                path="registro"
-                element={<RegistroAdministrador />}
-              ></Route>
-              <Route
-                path="iniciarSesion"
-                element={<IniciarSesionAdministrador />}
-              ></Route>
-              <Route
-                path="recuperarcontrasena"
-                element={<RecuperarContrasenaAdministrador />}
-              ></Route>
-              <Route
-                path="confirmar/:token"
-                element={<EmailConfirmado />}
-              ></Route>
-            </Route> */}
+            
           </Routes>
         </AuthProvider>
       </BrowserRouter>

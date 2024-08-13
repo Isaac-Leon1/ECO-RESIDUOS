@@ -27,13 +27,14 @@ const AuthProvider = ({ children }) => {
         {
             perfil(token)
         }
-    }, [])
+    },[])
     
     return (
         <AuthContext.Provider value={
             {
                 auth,
-                setAuth              
+                setAuth,
+                perfil            
             }
         }>
             {children}

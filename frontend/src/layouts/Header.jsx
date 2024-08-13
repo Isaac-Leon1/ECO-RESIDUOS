@@ -37,7 +37,7 @@ const Header = () => {
                     <Link
                       to="/rutas"
                       className={
-                        location.pathname == "/listar-rutas"
+                        location.pathname == "/rutas"
                           ? "text-[#67DCE3]"
                           : ""
                       }

@@ -6,7 +6,7 @@ import AuthContext from "../context/AuthProvider";
 
 const IniciarSesion = () => {
 	const navigate = useNavigate();
-	const { setAuth } = useContext(AuthContext);
+	const { perfil } = useContext(AuthContext);
 	const [alert, setAlert] = useState({
 		message: "",
 		exito: false,
@@ -33,7 +33,7 @@ const IniciarSesion = () => {
 			const response = await axios.post(url, form);
 			localStorage.setItem("token", response.data.token);
 			localStorage.setItem("role", response.data.rol);
-			setAuth(response.data);
+			perfil(response.data.token)
 			setAlert({ message: response.data.msg, exito: true });
 			navigate("/");
 		} catch (error) {
