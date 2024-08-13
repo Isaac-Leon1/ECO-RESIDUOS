@@ -30,19 +30,7 @@ const login = async (req,res)=>{
     // Actividad 4 (Respuesta)
     res.status(200).json({_id,token,nombre,apellido,direccion,telefono,email:emailBDD,rol:'administrador'})
 }
-// const perfil=(req,res)=>{
-//     const {nombre, apellido, direccion, telefono, email, rol} = req.ciudadano || req.admin
-//     res.status(200).json(
-//         {
-//             nombre,
-//             apellido,
-//             direccion,
-//             telefono,
-//             email,
-//             rol
-//         }
-//     )
-// }
+
 const registro = async (req,res)=>{
     // Actividad 1 (Request)
     const {

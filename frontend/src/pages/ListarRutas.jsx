@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import RutasTable from "../components/RutasTable";
+import BuscarRuta from "../components/BuscarRuta";
 
 const ListarRutas = () => {
   const [rutas, setRutas] = useState([])
@@ -8,6 +9,9 @@ const ListarRutas = () => {
     message: "",
     exito:false,
   });
+  const [form, setForm] = useState({
+    search:''
+  })
 
   const listarRutas = async () => {
     try {
@@ -33,6 +37,11 @@ const ListarRutas = () => {
         <h1 className='text-center text-3xl font-bold text-[#06457C] m-5'>Listar Rutas</h1>
         <p className='mx-16 m font-semibold'>Aquí podrás visualizar una lista de todas las rutas</p>
       </div>
+      <BuscarRuta 
+        form={form}
+        setForm={setForm}
+        setRutas={setRutas}
+      />
       <RutasTable 
       setRutas={setRutas}
       rutas={rutas}

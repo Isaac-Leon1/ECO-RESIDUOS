@@ -16,6 +16,7 @@ import RegistrarRuta from "./pages/RegistrarRuta";
 import NuevaContrasena from "./pages/NuevaContrasena";
 import ActualizarRuta from "./pages/ActualizarRuta";
 import EliminarRuta from "./pages/EliminarRuta";
+import Perfil from "./pages/Perfil";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
                 path="reportes-ciudadanos"
                 element={<ReportesCiudadanos />}
               ></Route>
+              <Route path="perfil" element={<Perfil />}/>
               <Route
                 path="gestionar-rutas"
                 element={

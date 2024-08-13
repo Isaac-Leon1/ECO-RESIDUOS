@@ -8,12 +8,14 @@ import {
     recuperarPassword,
     comprobarTokenPasword,
     nuevoPassword,
+    actualizarPerfil,
 } from '../controllers/ciudadano_controller.js'
 import verificarAutenticacion from '../middlewares/auth.js'
 import { validacionCiudadano } from '../middlewares/validacionCiudadanos.js'
 
 const router = Router()
 router.get('/perfil',verificarAutenticacion,perfil)
+router.put('/actualizar-perfil/:id',verificarAutenticacion,actualizarPerfil)
 router.post('/ciudadano/register',validacionCiudadano,registro)
 router.post('/ciudadano/login',login)
 router.get('/ciudadano/verify/:token',verificarToken)

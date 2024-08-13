@@ -22,7 +22,6 @@ export default function RutaForm({ type, setRutaUpdate, rutaUpdate = {} }) {
       setTimeEnd(schedule[1]);
       setForm({
         nombre: rutaUpdate.nombre,
-        nombre: rutaUpdate.nombre,
         empiezaEn: rutaUpdate.empiezaEn,
         finalizaEn: rutaUpdate.finalizaEn,
         dias: rutaUpdate.dias,

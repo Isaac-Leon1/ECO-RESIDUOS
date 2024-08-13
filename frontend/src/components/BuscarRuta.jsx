@@ -1,7 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
 
-export default function BuscarRuta({isSearch, setIsSearch, form, setForm, setRutas}) {
+export default function BuscarRuta({form, setForm, setRutas}) {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
@@ -10,13 +9,11 @@ export default function BuscarRuta({isSearch, setIsSearch, form, setForm, setRut
         `${import.meta.env.VITE_BACKEND_URL}/rutas/?q=${form.search}`
       );
       setRutas(response.data);
-      console.log(response)
     } catch (error) {
       console.log(error)
     }
   }
   const handleChange = (e) => {
-    setIsSearch(e.target.value ? true : false)
     setForm({...form,
       [e.target.name] : e.target.value
     }
@@ -54,7 +51,6 @@ export default function BuscarRuta({isSearch, setIsSearch, form, setForm, setRut
           value={form.search}
           onChange={handleChange}
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
-          required
         />
         <button
           type="submit"

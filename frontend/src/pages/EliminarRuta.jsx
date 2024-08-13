@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import BuscarRuta from "../components/BuscarRuta";
-import RutaForm from "../components/RutaForm";
 import RutasTable from "../components/RutasTable";
 import axios from "axios";
 
@@ -45,6 +44,7 @@ export default function EliminarRuta() {
         setIsSearch={setIsSearch}
         form={form}
         setForm={setForm}
+        setRutas={setRutas}
         />
         <RutasTable setRutas={setRutas} rutas={rutas} alert={alert} setAlert={setAlert} type={'eliminar'} setRutaUpdate={setRutaId}/>
       </div>

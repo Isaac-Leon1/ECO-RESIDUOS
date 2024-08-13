@@ -1,4 +1,5 @@
 import { sendMailToPerson } from "../config/nodemailer.js";
+import mongoose from "mongoose";
 import generarJWT from "../helpers/JWT.js";
 import Usuarios from "../models/Ciudadano.js";
 import Reportes from "../models/Reportes.js";
@@ -166,9 +167,10 @@ const nuevoPassword = async (req,res)=>{
 const perfil=(req,res)=>{
     try {
         if (req.ciudadano){
-            const {nombre, apellido, direccion, telefono, email, rol} = req.ciudadano 
+            const {id, nombre, apellido, direccion, telefono, email, rol} = req.ciudadano 
             res.status(200).json(
                 {
+                    id,
                     nombre,
                     apellido,
                     direccion,
@@ -200,13 +202,12 @@ const actualizarPerfil = async (req,res)=>{
     const {
         nombre,
         apellido,
-        direccion,
         telefono
     } = req.body
     if (Object.values(req.body).includes("")) return res.status(400).json({msg:"Lo sentimos, debes llenar todos los campos"})
-    if (!moongose.Types.ObjectId.isValid(id)) return res.status(404).json({msg:`Lo sentimos, el id ${id} no es válido`})
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({msg:`Lo sentimos, el id ${id} no es válido`})
     
-    await Ciudadano.findByIdAndUpdate(id,{nombre,apellido,direccion,telefono})
+    await Ciudadano.findByIdAndUpdate(id,{nombre,apellido,telefono})
     res.status(200).json({msg:"Perfil actualizado correctamente"})
 }
 const actualizarPassword = async (req,res)=>{

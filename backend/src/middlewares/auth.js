@@ -17,6 +17,7 @@ const verificarAutenticacion = async (req,res,next)=>{
         }
         else{
             req.ciudadano = await Ciudadano.findById(id).lean().select("-password")
+            req.ciudadano["id"] = id
             req.ciudadano["rol"] = rol
             next() // Continuar con la siguiente función
         }
