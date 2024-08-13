@@ -7,27 +7,20 @@ const EmailConfirmado = () => {
 	const { token } = useParams();
 
 	const [alert, setAlert] = useState({
-		message: "",
+		message: [],
 		exito: false,
 	});
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			const response = await axios.post(
-				`${import.meta.env.VITE_BACKEND_URL}/confirmar/${token}`,
-				form
-			);
-			setAlert({ message: response.data.msg, exito: true });
-		} catch (error) {
-			setAlert({ message: error.response.data.msg, exito: false });
-			setForm({
-				email: "",
-				password: "",
-			});
-		}
-	};
+
 	useEffect(() => {
-		handleSubmit();
+		const confirmarEmail = async () => {
+			try {
+				const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/confirmar/${token}`);
+				setAlert({ message: response.data.msg, exito: true });
+			} catch (error) {
+				setAlert({ message: error.response.data.msg, exito: false });
+			}
+		};
+		confirmarEmail();
 	}, []);
 
 	return (
@@ -45,7 +38,7 @@ const EmailConfirmado = () => {
 					sesión.
 				</p>
 				<Link
-					to="/administrador/iniciarSesion"
+					to="/login"
 					className="text-center bg-[#06457C] text-white rounded-lg p-3 w-full"
 				>
 					Iniciar sesión

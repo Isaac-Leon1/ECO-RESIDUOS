@@ -101,21 +101,21 @@ export default function RutasTable({
                   {type === "detalle" ? (
                     <Link
                       to={`/ruta/${ruta._id}`}
-                      className="font-medium text-blue-600 hover:underline"
+                      className="font-medium text-blue-600 hover:text-indigo-900 hover:underline"
                     >
                       Ver más
                     </Link>
                   ) : type === "actualizar" ? (
                     <button
                       onClick={() => handleClick(ruta._id)}
-                      className="font-medium text-blue-600 hover:underline"
+                      className="font-medium text-blue-600 hover:text-indigo-900 hover:underline"
                     >
                       Actualizar
                     </button>
                   ) : type === "eliminar" ? (
                     <button
                       onClick={() => handleDelete(ruta._id)}
-                      className="font-medium text-red-600 hover:underline"
+                      className="font-medium text-red-600 hover:text-red-900 hover:underline"
                     >
                       Eliminar
                     </button>

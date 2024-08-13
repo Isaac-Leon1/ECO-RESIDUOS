@@ -198,8 +198,30 @@ const nuevoPassword = async (req,res)=>{
 }
 
 const listarReportes = async (req,res) => {
-    const reportes = await Reportes.find({state:true}).where('rutas').select("-createdAt -updatedAt -__v")
+    const reportes = await Reportes.find({estado:true}).select("-createdAt -updatedAt -__v").populate('ciudadano','_id nombre apellido email telefono')
     res.status(200).json(reportes)
+}
+
+const eliminarReporte = async (req,res) => {
+    const {id} = req.params
+    if (!moongose.Types.ObjectId.isValid(id)) return res.status(404).json({msg:`Lo sentimos, el id ${id} no es válido`})
+    await Reportes.findByIdAndUpdate(id,{estado:false})
+    res.status(200).json({msg:"Reporte eliminado correctamente"})
+}
+
+const detalleReporte = async (req,res) => {
+    const {id} = req.params
+    if (!moongose.Types.ObjectId.isValid(id)) return res.status(404).json({msg:`Lo sentimos, el id ${id} no es válido`})
+    const reporte = await Reportes.findById(id).select("-createdAt -updatedAt -__v").populate('ciudadano','_id nombre apellido email telefono')
+    res.status(200).json(reporte)
+}
+
+const actualizarReporte = async (req,res) => {
+    const {id} = req.params
+    const {descripcion,lugar,fecha,hora} = req.body
+    if (!moongose.Types.ObjectId.isValid(id)) return res.status(404).json({msg:`Lo sentimos, el id ${id} no es válido`})
+    await Reportes.findByIdAndUpdate(id,{descripcion,lugar,fecha,hora})
+    res.status(200).json({msg:"Reporte actualizado correctamente"})
 }
 
 export {
@@ -209,5 +231,8 @@ export {
 	recuperarPassword,
     comprobarTokenPasword,
 	nuevoPassword,
-    listarReportes
+    listarReportes,
+    eliminarReporte,
+    detalleReporte,
+    actualizarReporte
 }

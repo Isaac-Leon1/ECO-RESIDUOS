@@ -8,6 +8,7 @@ import ListarRutas from "./pages/ListarRutas";
 import { AuthProvider } from "./context/AuthProvider";
 import ReportesCiudadanos from "./pages/ReportesCiudadanos";
 import DetalleRuta from "./pages/DetalleRuta";
+import DetalleReporte from "./pages/DetalleReporte";
 import Inicio from "./pages/Inicio";
 import PrivateRouteWithRole from "./routes/PrivateRoutesWithRole";
 import Header from "./layouts/Header";
@@ -16,6 +17,7 @@ import RegistrarRuta from "./pages/RegistrarRuta";
 import NuevaContrasena from "./pages/NuevaContrasena";
 import ActualizarRuta from "./pages/ActualizarRuta";
 import EliminarRuta from "./pages/EliminarRuta";
+import EmailConfirmado from "./pages/EmailConfirmado";
 import Perfil from "./pages/Perfil";
 import PrivateRouteWithCRole from "./routes/PrivateRouteWithCRole";
 import { Forbidden } from "./pages/Forbidden";
@@ -30,10 +32,12 @@ function App() {
             <Route path="login" element={<IniciarSesion />} />
             <Route path="recuperarcontrasena" element={<RecuperarContrasena />} />
             <Route path="nueva-contrasena/:token" element={<NuevaContrasena />} />
+            <Route path="confirmar/:token" element={<EmailConfirmado />} />
             <Route path="/" element={<Header />}>
               <Route index element={<Inicio />}></Route>
               <Route path="rutas" element={<ListarRutas />}></Route>
               <Route path="ruta/:id" element={<DetalleRuta />}></Route>
+              <Route path="reporte/:id" element={<DetalleReporte />}></Route>
               <Route
                 path="reportes-ciudadanos"
                 element={<ReportesCiudadanos />}

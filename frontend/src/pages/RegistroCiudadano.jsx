@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Alert from "../components/Alert";
 import axios from "axios";
 
 const RegistroCiudadano = () => {
   const [alert, setAlert] = useState({
-    message: "",
+    message: [],
     exito: false,
   });
   const [mostrarPassword, setMostrarPassword] = useState(false);
@@ -31,9 +31,29 @@ const RegistroCiudadano = () => {
       );
       setAlert({ message: response.data.res, exito: true });
     } catch (error) {
-      setAlert({ message: error.response.data.msg, exito: false });
+      const arregloErrores = [...error.response.data.errors];
+      const errores = [];
+      arregloErrores.forEach((error) => {
+        if (!errores.find((e) => e?.msg === error.msg)) {
+          errores.push(error);
+        }
+      })
+      setAlert({ message: errores, exito: false });
     }
   };
+
+  useEffect(() => {
+    if (alert.message.length > 0 && !alert.exito) {
+      const intervalo = setInterval(() => {
+        setAlert((alertas) => {
+          const [_, ...rest] = alertas.message;
+          return { ...alertas, message: rest };
+        });
+      }, 3000);
+
+      return () => clearInterval(intervalo);
+    }
+  }, [alert]);
 
   return (
     <>
@@ -220,8 +240,10 @@ const RegistroCiudadano = () => {
                 Inicia Sesión
               </a>
             </p>
-            {alert.message && (
-              <Alert exito={alert.exito}>{alert.message}</Alert>
+            {alert.message.length > 0 && (
+              alert.message.map((error, index) => (
+                <Alert key={index} exito={alert.exito}>{error.msg}</Alert>
+              ))
             )}
           </form>
         </div>
