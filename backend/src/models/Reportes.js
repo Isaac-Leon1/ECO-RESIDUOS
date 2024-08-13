@@ -24,7 +24,7 @@ const reporteSchema = new Schema({
     },
     estado: {
         type: Boolean,
-        default: false
+        default: true
     }
 }, {
     timestamps: true

@@ -2,14 +2,15 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FormularioReportes from "../components/FormularioReportes";
 import AuthContext from "../context/AuthProvider";
+import ReportesTable from "../components/ReportesTable";
 
 const ReportesCiudadanos = () => {
   const {auth} = useContext(AuthContext)
   const [autenticado, setAutenticado] = useState(localStorage.getItem("token"));
 
-  useEffect(() => {
-    setAutenticado(localStorage.getItem("token"));
-  }, []);
+  // useEffect(() => {
+  //   setAutenticado(localStorage.getItem("token"));
+  // }, []);
 
   if (!autenticado) {
     return (
@@ -103,10 +104,9 @@ const ReportesCiudadanos = () => {
         Reportar Rutas
       </h1>
       <p className="mx-16 m font-semibold text-center">
-        Reporta cualquier incidente ocurrido en una ruta
+        {auth.rol === 'administrador' ? <>Ver todos los incidenter registrados</> : <>Reportar cualquier incidente ocurrido en una ruta</>}
       </p>
-      {auth.rol === 'administrador' ? <div>Reportes</div> : <FormularioReportes />}
-      
+      {auth.rol === 'administrador' ? <ReportesTable/> : <FormularioReportes />}
     </div>
   );
 };
