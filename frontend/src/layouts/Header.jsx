@@ -57,7 +57,7 @@ const Header = () => {
                       Reportes de ciudadanos
                     </Link>
                   </li>
-              {auth?.rol == "administrador" ? (
+              {auth?.rol == "administrador" && (
                 <>
                   <li>
                     <Link
@@ -72,7 +72,23 @@ const Header = () => {
                     </Link>
                   </li>
                 </>
-              ) : ''}
+              )}
+              {auth?.rol == "ciudadano" && (
+                <>
+                  <li>
+                    <Link
+                      to="/reportes"
+                      className={
+                        location.pathname == "/reportes"
+                          ? "text-[#67DCE3]"
+                          : ""
+                      }
+                    >
+                      Mis reportes
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           <div className="flex gap-6 items-center">

@@ -8,7 +8,7 @@ import {
     recuperarPassword,
     comprobarTokenPasword,
     nuevoPassword,
-    actualizarPerfil,
+    actualizarPerfil
 } from '../controllers/ciudadano_controller.js'
 import verificarAutenticacion from '../middlewares/auth.js'
 import { validacionCiudadano } from '../middlewares/validacionCiudadanos.js'
@@ -23,6 +23,7 @@ router.get('/ciudadano/confirmar/:token',comprobarTokenPasword)
 router.post('/ciudadano/recuperarcontrasena',recuperarPassword)
 router.post('/ciudadano/nuevapassword/:token',nuevoPassword)
 
-router.post('/ciudadano/reports',verificarAutenticacion,reportarIncidente)
+router.post('/ciudadano/reportes',verificarAutenticacion,reportarIncidente)
+
 
 export default router;

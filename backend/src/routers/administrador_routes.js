@@ -6,10 +6,6 @@ import {
     recuperarPassword,
     comprobarTokenPasword,
     nuevoPassword,
-    listarReportes,
-    eliminarReporte,
-    detalleReporte,
-    actualizarReporte
 } from '../controllers/administrador_controller.js'
 import verificarAutenticacion from '../middlewares/auth.js'
 import { validacionAdministrador } from '../middlewares/validacionAdministrador.js'

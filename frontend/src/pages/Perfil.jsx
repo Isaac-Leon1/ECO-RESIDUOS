@@ -5,6 +5,7 @@ import Alert from "../components/Alert";
 
 export default function Perfil() {
   const { auth, setAuth } = useContext(AuthContext);
+  console.log(auth)
   const [onEdit, setOnEdit] = useState(false);
   const [alert, setAlert] = useState("");
   const [form, setForm] = useState({
@@ -172,11 +173,7 @@ export default function Perfil() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="w-full rounded-lg bg-blue-500 hover:bg-blue-400 mt-4 text-white text-lg font-semibold">
-                  <button
-                  type="button" 
-                  className="w-full p-4">Cambiar Contraseña</button>
-                </div>
+                
                 <div
                   className={`w-full rounded-lg bg-blue-500 mt-4 hover:bg-blue-400 text-white text-lg font-semibold ${
                     onEdit ? "hidden" : ""

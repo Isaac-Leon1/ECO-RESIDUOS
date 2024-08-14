@@ -7,6 +7,7 @@ import morgan from 'morgan'
 import routerAdministradores from './routers/administrador_routes.js'
 import routerRutas from './routers/rutas_routes.js'
 import routerUsuarios from './routers/ciudadano_routes.js'
+import routerReportes from './routers/reportes_routes.js'
 
 // Inicializaciones
 const app = express()
@@ -30,6 +31,7 @@ app.get('/',(req,res)=>{
 app.use('/api',routerRutas)
 app.use('/api',routerAdministradores)
 app.use('/api',routerUsuarios)
+app.use('/api',routerReportes)
 
 // Manejo de una ruta que no sea encontrada
 app.use((req,res)=>res.status(404).send("Endpoint no encontrado - 404"))

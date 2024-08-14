@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import Alert from "../components/Alert";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const RegistroCiudadano = () => {
   const [alert, setAlert] = useState({
-    message: [],
+    message: '',
     exito: false,
   });
   const [mostrarPassword, setMostrarPassword] = useState(false);
-
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     nombre: "",
     apellido: "",
@@ -32,40 +34,10 @@ const RegistroCiudadano = () => {
       console.log(response.data);
       setAlert({ message: [response.data], exito: true });
     } catch (error) {
-      const response = error.response.data;
-      const mensaje = response.errors || response;
-      
-      
-      if (mensaje.length > 0) {
-
-        const arregloErrores = [...mensaje];
-        
-        const errores = [];
-        arregloErrores.forEach((error) => {
-          if (!errores.find((e) => e?.msg === error.msg)) {
-            errores.push(error);
-          }
-        })
-
-        setAlert({ message: errores, exito: false });
-        return;
-      }
-      setAlert({ message: [mensaje], exito: false });
+      setAlert({ message: error.response.data.msg || error.response.data.errors[0].msg , exito: false });
     }
   };
 
-  useEffect(() => {
-    if (alert.message.length > 0 && !alert.exito) {
-      const intervalo = setInterval(() => {
-        setAlert((alertas) => {
-          const [_, ...rest] = alertas.message;
-          return { ...alertas, message: rest };
-        });
-      }, 3000);
-
-      return () => clearInterval(intervalo);
-    }
-  }, [alert]);
 
   return (
     <>
@@ -247,10 +219,10 @@ const RegistroCiudadano = () => {
             </button>
             <p className="text-[14px] text-center">
               ¿Ya tienes cuenta?{" "}
-              <a href="/login" className="text-[#0464B8]">
+              <Link to="/login" className="text-[#0464B8]">
                 {" "}
                 Inicia Sesión
-              </a>
+              </Link>
             </p>
             {alert.message.length > 0 && (
               alert.message.map((error, index) => (

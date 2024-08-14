@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Alert from "../components/Alert";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const RecuperarContrasena = () => {
 	const [alert, setAlert] = useState({
 		message: "",
@@ -71,10 +72,10 @@ const RecuperarContrasena = () => {
 						</button>
 						<p className="text-[14px] text-center">
 							¿No tienes cuenta?{" "}
-							<a href="/registro" className="text-[#0464B8]">
+							<Link to="/registro" className="text-[#0464B8]">
 								{" "}
 								Registrate aquí
-							</a>
+							</Link>
 						</p>
 						{alert.message && (
 							<Alert exito={alert.exito}>{alert.message}</Alert>

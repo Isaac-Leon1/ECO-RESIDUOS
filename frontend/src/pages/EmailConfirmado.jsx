@@ -4,7 +4,7 @@ import Alert from "../components/Alert";
 import { Link, useParams } from "react-router-dom";
 
 const EmailConfirmado = () => {
-	const { token } = useParams();
+	const { tipo, token } = useParams();
 
 	const [alert, setAlert] = useState({
 		message: [],
@@ -14,7 +14,7 @@ const EmailConfirmado = () => {
 	useEffect(() => {
 		const confirmarEmail = async () => {
 			try {
-				const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/confirmar/${token}`);
+				const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/ciudadano/verify/${token}`);
 				setAlert({ message: response.data.msg, exito: true });
 			} catch (error) {
 				console.log(error);

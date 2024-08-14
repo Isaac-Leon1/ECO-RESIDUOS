@@ -1,34 +1,20 @@
 import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useContext } from "react";
+import ReportsContext from "../context/ReportsProvider";
 import { format } from "date-fns";
 import Alert from "../components/Alert";
 
 const DetalleReporte = () => {
     const { id } = useParams();
-    const [reporte, setReporte] = useState({});
-    const [alert, setAlert] = useState({});
-
+    const { reports:reporte, alert, handleGetReport } = useContext(ReportsContext);
+    
     const formatearFecha = (fecha) => {
         return format(new Date(fecha), 'dd/MM/yyyy');
     }
 
     useEffect(() => {
         const obtenerReporte = async () => {
-            try {
-                const url = `${import.meta.env.VITE_BACKEND_URL}/administrador/reporte/${id}`;
-                const token = localStorage.getItem("token");
-                const options = {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                };
-                const response = await axios.get(url, options);
-                setReporte(response.data);
-            } catch (error) {
-                setAlert({ message: error.response.data.msg, exito: false });
-            }
+            await handleGetReport(id);
         };
         obtenerReporte();
     }, [id]);
@@ -62,7 +48,7 @@ const DetalleReporte = () => {
                 </p>
             </div>
             <div>
-                {Object.keys(reporte).length != 0 ? (
+                {Object.keys(reporte).length == 7 ? (
                     <>
                         <div className="m-5 flex justify-center">
                             <div>
@@ -77,11 +63,15 @@ const DetalleReporte = () => {
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
                                         <span className="text-gray-600 font-bold">Usuario que reportó: </span>
-                                        {reporte.ciudadano.nombre} - {reporte.ciudadano.apellido}
+                                        {reporte.ciudadano?.nombre && reporte.ciudadano?.apellido ? (
+                                            reporte.ciudadano?.nombre + " " + reporte.ciudadano?.apellido
+                                        ) : "No disponible"}
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
                                         <span className="text-gray-600 font-bold">Contacto del usuario: </span>
-                                        {reporte.ciudadano.email}
+                                        {reporte.ciudadano?.email && reporte.ciudadano?.telefono ? (
+                                            reporte.ciudadano?.email + " - " + reporte.ciudadano?.telefono
+                                        ) : "No disponible"}8
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
                                         <span className="text-gray-600 font-bold">Dirección: </span>
