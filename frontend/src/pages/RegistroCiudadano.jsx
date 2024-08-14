@@ -31,7 +31,7 @@ const RegistroCiudadano = () => {
         form
       );
       console.log(response.data);
-      setAlert({ message: [response.data], exito: true });
+      setAlert({ message: response.data.res, exito: true });
     } catch (error) {
       setAlert({ message: error.response.data.msg || error.response.data.errors[0].msg , exito: false });
     }
@@ -223,11 +223,8 @@ const RegistroCiudadano = () => {
                 Inicia Sesión
               </Link>
             </p>
-            {alert.message.length > 0 && (
-              alert.message.map((error, index) => (
-
-                <Alert key={index} exito={alert.exito}>{error.msg || error.res}</Alert>
-              ))
+            {alert.message && (
+                <Alert exito={alert.exito}>{alert.message}</Alert>
             )}
           </form>
         </div>

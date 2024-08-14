@@ -27,12 +27,12 @@ const EmailConfirmado = () => {
 	return (
 		<>
 			<div className="min-h-screen w-full flex flex-col justify-center items-center gap-4">
-				<img src="/public/logo.png" className="w-80 mx-auto pb-10"></img>
+				<img src="/logo.png" className="w-80 mx-auto pb-10"></img>
 				<h1 className="text-[#06457C] text-[36px] font-bold text-center">
 					Email confirmado
 				</h1>
 
-				<img src="/public/imgConfirmarEmail.png" />
+				<img src="/imgConfirmarEmail.png" />
 
 				<p className= "text-center">
 					Tu cuenta ha sido confirmada exitosamente, ahora puedes iniciar
