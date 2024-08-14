@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 import Alert from "../components/Alert";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const RegistroCiudadano = () => {
   const [alert, setAlert] = useState({
-    message: [],
+    message: '',
     exito: false,
   });
   const [mostrarPassword, setMostrarPassword] = useState(false);
@@ -30,35 +31,13 @@ const RegistroCiudadano = () => {
         `${import.meta.env.VITE_BACKEND_URL}/ciudadano/register`,
         form
       );
-      setAlert({ message: [{msg: response.data.res}], exito: true });
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
+      setAlert({ message: response.data.res, exito: true });
+      
     } catch (error) {
-      console.log(error);
-      const lista = error.response.data.errors || error.response.data.msg || [];
-      const arregloErrores = (Array.isArray(lista) ? lista : [{msg:lista}])
-      .filter((value, index, self) => 
-        index === self.findIndex((obj) => (
-            JSON.stringify(obj.msg) === JSON.stringify(value.msg)
-        ))
-      );
-      setAlert({ message: arregloErrores, exito: false });
+      setAlert({ message: error.response.data.msg || error.response.data.errors[0].msg , exito: false });
     }
   };
 
-  useEffect(() => {
-    if (alert.message.length > 0 && !alert.exito) {
-      const intervalo = setInterval(() => {
-        setAlert((alertas) => {
-          const [_, ...rest] = alertas.message;
-          return { ...alertas, message: rest };
-        });
-      }, 3000);
-
-      return () => clearInterval(intervalo);
-    }
-  }, [alert]);
 
   return (
     <>
@@ -240,15 +219,13 @@ const RegistroCiudadano = () => {
             </button>
             <p className="text-[14px] text-center">
               ¿Ya tienes cuenta?{" "}
-              <a href="/login" className="text-[#0464B8]">
+              <Link to="/login" className="text-[#0464B8]">
                 {" "}
                 Inicia Sesión
-              </a>
+              </Link>
             </p>
-            {alert.message.length > 0 && (
-              alert.message.map((error, index) => (
-                <Alert key={index} exito={alert.exito}>{error.msg}</Alert>
-              ))
+            {alert.message && (
+                <Alert exito={alert.exito}>{alert.message}</Alert>
             )}
           </form>
         </div>

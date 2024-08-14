@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import Alert from "../components/Alert";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthProvider";
 
 const IniciarSesion = () => {
@@ -51,7 +51,7 @@ const IniciarSesion = () => {
 						className="flex flex-col gap-4 justify-center  min-h-screen w-3/5"
 						onSubmit={handleSubmit}
 					>
-						<img src="/public/logo.png" className="w-80 mx-auto pb-10"></img>
+						<img src="/logo.png" className="w-80 mx-auto pb-10"></img>
 
 						<div className="relative">
 							<svg
@@ -145,17 +145,17 @@ const IniciarSesion = () => {
 						</button>
 						<p className="text-[14px] text-center">
 							¿No tienes cuenta?{" "}
-							<a href="/registro" className="text-[#0464B8]">
+							<Link to="/registro" className="text-[#0464B8]">
 								{" "}
 								Registrate aquí
-							</a>
+							</Link>
 						</p>
-						<a
-							href="/recuperarcontrasena"
+						<Link
+							to="/recuperarcontrasena"
 							className="text-[#0464B8] text-[14px] text-center"
 						>
 							¿Olvidó la contraseña?
-						</a>
+						</Link>
 						{alert.message && (
 							<Alert exito={alert.exito}>{alert.message}</Alert>
 						)}

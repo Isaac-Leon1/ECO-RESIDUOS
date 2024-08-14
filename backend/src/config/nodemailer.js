@@ -65,7 +65,7 @@ const sendMailToPerson = async (userMail, token) => {
     html: `
     <h1>Sistema de gestion de residuos</h1>
     <hr>
-    Click <a href=${process.env.URL_FRONTEND}confirmar/user/${token}>aqui</a> para confirmar tu cuenta.
+    Click <a href=${process.env.URL_FRONTEND}confirmar/${token}>aqui</a> para confirmar tu cuenta.
     <hr>
     <footer>Residuos</footer>
     `,

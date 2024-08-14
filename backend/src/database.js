@@ -1,9 +1,10 @@
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 
+
 dotenv.config()
 
-const conn_str = process.env.MONGO_URL;
+const conn_str = process.env.MONGODB_URL || "mongodb://localhost:27017/ECORESIDUOS";
 
 mongoose.set('strictQuery', true)
 

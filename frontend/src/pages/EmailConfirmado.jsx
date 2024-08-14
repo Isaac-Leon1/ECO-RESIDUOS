@@ -13,9 +13,8 @@ const EmailConfirmado = () => {
 
 	useEffect(() => {
 		const confirmarEmail = async () => {
-			const URL = tipo === "admin" ? `${import.meta.env.VITE_BACKEND_URL}/confirmar/${token}` : `${import.meta.env.VITE_BACKEND_URL}/ciudadano/verify/${token}`;
 			try {
-				const response = await axios.get(URL);
+				const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/ciudadano/verify/${token}`);
 				setAlert({ message: response.data.msg, exito: true });
 			} catch (error) {
 				setAlert({ message: error.response.data.msg, exito: false });
