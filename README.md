@@ -2,6 +2,8 @@
  Sistema de gestión de residuos <img src = 'https://github.com/user-attachments/assets/48c067ac-bc07-44c9-bf48-58156d802c77' height='35px'>
 </h1>
 
+<img src='https://github.com/user-attachments/assets/6eb8dd0d-d962-42d6-95dd-56a13e463827' height='400px' align='center'>
+
 > [!IMPORTANT]
 > **Planteamiento del problema**
 >
