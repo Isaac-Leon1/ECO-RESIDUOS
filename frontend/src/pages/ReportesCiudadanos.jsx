@@ -109,7 +109,7 @@ const ReportesCiudadanos = () => {
         Reportar Rutas
       </h1>
       <p className="mx-16 m font-semibold text-center">
-        {auth.rol === 'administrador' ? <>Ver todos los incidenter registrados</> : <>Reportar cualquier incidente ocurrido en una ruta</>}
+        {auth.rol === 'administrador' ? <>Ver todos los incidentes registrados</> : <>Reportar cualquier incidente ocurrido en una ruta</>}
       </p>
       {(auth.rol === 'administrador' && reports.length > 0) ? <ReportesTable reportes={reports}/> : <FormularioReportes />}
     </div>
