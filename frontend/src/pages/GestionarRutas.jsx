@@ -1,7 +1,6 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 export const GestionarRutas = () => {
-  const location = useLocation();
   return (
     <>
       <div className="flex justify-center flex-col">
@@ -13,13 +12,13 @@ export const GestionarRutas = () => {
         </p>
       </div>
       <div className="flex flex-row mx-16 gap-5">
-        <Link to={'registrar'} className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded ${location.pathname=='/gestionar-rutas/registrar' && 'bg-blue-700'}`}>
+        <Link to={'registrar'} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
         Registrar Ruta
         </Link>
-        <Link to={'actualizar'} className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded ${location.pathname=='/gestionar-rutas/actualizar' && 'bg-blue-700'}`}>
+        <Link to={'actualizar'} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
         Actualizar Ruta
         </Link>
-        <Link to={'eliminar'} className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded ${location.pathname=='/gestionar-rutas/eliminar' && 'bg-blue-700'}`}>
+        <Link to={'eliminar'} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
         Eliminar Ruta
         </Link>
       </div>
