@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Alert from "../components/Alert";
 import axios from "axios";
 
@@ -8,7 +9,7 @@ const RegistroCiudadano = () => {
     exito: false,
   });
   const [mostrarPassword, setMostrarPassword] = useState(false);
-
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     nombre: "",
     apellido: "",
@@ -29,16 +30,20 @@ const RegistroCiudadano = () => {
         `${import.meta.env.VITE_BACKEND_URL}/ciudadano/register`,
         form
       );
-      setAlert({ message: response.data.res, exito: true });
+      setAlert({ message: [{msg: response.data.res}], exito: true });
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
     } catch (error) {
-      const arregloErrores = [...error.response.data.errors];
-      const errores = [];
-      arregloErrores.forEach((error) => {
-        if (!errores.find((e) => e?.msg === error.msg)) {
-          errores.push(error);
-        }
-      })
-      setAlert({ message: errores, exito: false });
+      console.log(error);
+      const lista = error.response.data.errors || error.response.data.msg || [];
+      const arregloErrores = (Array.isArray(lista) ? lista : [{msg:lista}])
+      .filter((value, index, self) => 
+        index === self.findIndex((obj) => (
+            JSON.stringify(obj.msg) === JSON.stringify(value.msg)
+        ))
+      );
+      setAlert({ message: arregloErrores, exito: false });
     }
   };
 

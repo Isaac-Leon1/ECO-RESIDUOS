@@ -1,10 +1,9 @@
 import { sendMailToPerson } from "../config/nodemailer.js";
 import mongoose from "mongoose";
 import generarJWT from "../helpers/JWT.js";
-import Usuarios from "../models/Ciudadano.js";
+import Ciudadano from "../models/Ciudadano.js";
 import Reportes from "../models/Reportes.js";
 import {sendMailToRecoveryPassword} from "../config/nodemailer.js";
-import Ciudadano from "../models/Ciudadano.js";
 
 const registro = async (req,res)=>{
     const {
@@ -15,9 +14,9 @@ const registro = async (req,res)=>{
         telefono
     } = req.body
     if (Object.values(req.body).includes("")) return res.status(400).json({msg:"Lo sentimos, debes llenar todos los campos"})
-    const verificarEmail = await Usuarios.findOne({email})
+    const verificarEmail = await Ciudadano.findOne({email})
     if(verificarEmail) return res.status(400).json({msg:"Lo sentimos, el email ya existe"})
-    const usuario = new Usuarios({
+    const usuario = new Ciudadano({
         nombre,
         apellido,
         email,
@@ -44,7 +43,7 @@ const login = async (req,res)=>{
     // Validar que los campos no estén vacíos
     if (Object.values(req.body).includes("")) return res.status(400).json({msg:"Lo sentimos, debes llenar todos los campos"})
     // Validar que el email exista en la base de datos
-    const usuario = await Usuarios.findOne({email})
+    const usuario = await Ciudadano.findOne({email})
     if(!usuario) return res.status(400).json({msg:"Lo sentimos, el email no existe"})
     // Validar que la contraseña sea correcta
     const matchPassword = await usuario.matchPassword(password)
@@ -67,7 +66,7 @@ const login = async (req,res)=>{
 
 const verificarToken = async (req, res)=>{
     const {token} = req.params
-    const usuario = await Usuarios.findOne({token})
+    const usuario = await Ciudadano.findOne({token})
     if(!usuario) return res.status(400).json({msg:"Lo sentimos, el token no es válido"})
     usuario.confirmEmail = true
     usuario.token = null
@@ -93,6 +92,7 @@ const reportarIncidente = async (req,res)=>{
     await reporte.save()
     res.status(200).json({msg:"Reporte creado exitosamente"})
 }
+
 const recuperarPassword = async (req,res)=>{
     // Actividad 1 (Request)
     const {email} = req.body
@@ -104,7 +104,7 @@ const recuperarPassword = async (req,res)=>{
     }
 
     //? Validar si el email existe
-    const ciudadanoBDD = await Usuarios.findOne({email})
+    const ciudadanoBDD = await Ciudadano.findOne({email})
     if (!ciudadanoBDD){
         return res.status(404).json({error:'Lo sentimos, el email no existe'})
     }
@@ -125,7 +125,7 @@ const comprobarTokenPasword = async (req,res)=>{
         return res.status(400).json({error:'Lo sentimos, no se puede validar el token'})
     }
     //? Validar si el token es correcto
-    const ciudadanoBDD = await Usuarios.findOne({token})
+    const ciudadanoBDD = await Ciudadano.findOne({token})
     if (!ciudadanoBDD){
         return res.status(404).json({error:'Lo sentimos, el token no existe'})
     }
@@ -150,7 +150,7 @@ const nuevoPassword = async (req,res)=>{
         return res.status(400).json({error:'Lo sentimos, las contraseñas no coinciden'})
     }
     //? Validar si la contraseña es la misma a la almacenada en la base de datos
-    const ciudadanoBDD = await Usuarios.findOne({token:req.params.token})
+    const ciudadanoBDD = await Ciudadano.findOne({token:req.params.token})
     if (!ciudadanoBDD){
         return res.status(404).json({error:'Lo sentimos, el token no existe'})
     }
@@ -180,9 +180,10 @@ const perfil=(req,res)=>{
                 }
             )
         }else if (req.admin){
-            const {nombre, apellido, telefono, email, rol} = req.admin 
+            const {id, nombre, apellido, telefono, email, rol} = req.admin 
             res.status(200).json(
                 {
+                    id,
                     nombre,
                     apellido,
                     telefono,
@@ -247,6 +248,7 @@ const actualizarPassword = async (req,res)=>{
     // Actividad 4 (Respuesta)
     res.status(200).json({msg:'Contraseña actualizada'})
 }
+
 export {
     registro,
     login,
@@ -258,5 +260,4 @@ export {
     perfil,
     actualizarPerfil,
     actualizarPassword
-
 }

@@ -5,6 +5,7 @@ import Alert from "../components/Alert";
 
 export default function Perfil() {
   const { auth, setAuth } = useContext(AuthContext);
+  console.log(auth)
   const [onEdit, setOnEdit] = useState(false);
   const [alert, setAlert] = useState("");
   const [form, setForm] = useState({
