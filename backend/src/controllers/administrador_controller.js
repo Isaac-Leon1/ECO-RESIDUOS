@@ -202,5 +202,6 @@ export {
     confirmEmail,
 	recuperarPassword,
     comprobarTokenPasword,
-	nuevoPassword
+	nuevoPassword,
+    
 }

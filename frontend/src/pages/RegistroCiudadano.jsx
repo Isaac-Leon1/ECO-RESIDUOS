@@ -10,7 +10,6 @@ const RegistroCiudadano = () => {
     exito: false,
   });
   const [mostrarPassword, setMostrarPassword] = useState(false);
-  const navigate = useNavigate();
   const [form, setForm] = useState({
     nombre: "",
     apellido: "",
