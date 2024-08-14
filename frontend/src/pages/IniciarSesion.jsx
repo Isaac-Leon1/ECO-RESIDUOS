@@ -37,7 +37,8 @@ const IniciarSesion = () => {
 			setAlert({ message: response.data.msg, exito: true });
 			navigate("/");
 		} catch (error) {
-			setAlert({ message: error.response.data.msg, exito: false });
+			console.log(error)
+			setAlert({ message: error.response.data.msg || error.response.data.errors[0].msg, exito: false });
 			setTimeout(() => setAlert({}), 3000);
 		}
 	};

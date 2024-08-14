@@ -25,7 +25,7 @@ const FormularioReportes = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem("token");
-            const url = `${import.meta.env.VITE_BACKEND_URL}/ciudadano/reports`;
+            const url = `${import.meta.env.VITE_BACKEND_URL}/ciudadano/reportes`;
             const options = {
                 headers: {
                     "Content-Type": "application/json",
