@@ -2,7 +2,6 @@ import Administrador from '../models/Administrador.js';
 import moongose from 'mongoose';
 import generarToken from '../helpers/JWT.js';
 import { sendMailToAdmin, sendMailToRecoveryPassword } from '../config/nodemailer.js';
-import Reportes from '../models/Reportes.js';
 
 const login = async (req,res)=>{
     // Actividad 1 (Request): Obtener los valores de email y password del body
@@ -197,42 +196,11 @@ const nuevoPassword = async (req,res)=>{
     res.status(200).json({msg:'Contraseña actualizada, ya puedes iniciar sesión'})
 }
 
-const listarReportes = async (req,res) => {
-    const reportes = await Reportes.find({estado:true}).select("-createdAt -updatedAt -__v").populate('ciudadano','_id nombre apellido email telefono')
-    res.status(200).json(reportes)
-}
-
-const eliminarReporte = async (req,res) => {
-    const {id} = req.params
-    if (!moongose.Types.ObjectId.isValid(id)) return res.status(404).json({msg:`Lo sentimos, el id ${id} no es válido`})
-    await Reportes.findByIdAndUpdate(id,{estado:false})
-    res.status(200).json({msg:"Reporte eliminado correctamente"})
-}
-
-const detalleReporte = async (req,res) => {
-    const {id} = req.params
-    if (!moongose.Types.ObjectId.isValid(id)) return res.status(404).json({msg:`Lo sentimos, el id ${id} no es válido`})
-    const reporte = await Reportes.findById(id).select("-createdAt -updatedAt -__v").populate('ciudadano','_id nombre apellido email telefono')
-    res.status(200).json(reporte)
-}
-
-const actualizarReporte = async (req,res) => {
-    const {id} = req.params
-    const {descripcion,lugar,fecha,hora} = req.body
-    if (!moongose.Types.ObjectId.isValid(id)) return res.status(404).json({msg:`Lo sentimos, el id ${id} no es válido`})
-    await Reportes.findByIdAndUpdate(id,{descripcion,lugar,fecha,hora})
-    res.status(200).json({msg:"Reporte actualizado correctamente"})
-}
-
 export {
     login,
     registro,
     confirmEmail,
 	recuperarPassword,
     comprobarTokenPasword,
-	nuevoPassword,
-    listarReportes,
-    eliminarReporte,
-    detalleReporte,
-    actualizarReporte
+	nuevoPassword
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import Alert from "../components/Alert";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -9,7 +10,7 @@ const RegistroCiudadano = () => {
     exito: false,
   });
   const [mostrarPassword, setMostrarPassword] = useState(false);
-
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     nombre: "",
     apellido: "",

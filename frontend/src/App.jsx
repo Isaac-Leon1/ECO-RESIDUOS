@@ -6,7 +6,9 @@ import IniciarSesion from "./pages/IniciarSesion";
 import RecuperarContrasena from "./pages/RecuperarContrasena";
 import ListarRutas from "./pages/ListarRutas";
 import { AuthProvider } from "./context/AuthProvider";
+import { ReportsProvider } from "./context/ReportsProvider";
 import ReportesCiudadanos from "./pages/ReportesCiudadanos";
+import ActualizarReporte from "./pages/ActualizarReporte";
 import DetalleRuta from "./pages/DetalleRuta";
 import DetalleReporte from "./pages/DetalleReporte";
 import Inicio from "./pages/Inicio";
@@ -18,6 +20,7 @@ import NuevaContrasena from "./pages/NuevaContrasena";
 import ActualizarRuta from "./pages/ActualizarRuta";
 import EliminarRuta from "./pages/EliminarRuta";
 import EmailConfirmado from "./pages/EmailConfirmado";
+import ListarReportes from "./pages/ListarReportes";
 import Perfil from "./pages/Perfil";
 import PrivateRouteWithCRole from "./routes/PrivateRouteWithCRole";
 import { Forbidden } from "./pages/Forbidden";
@@ -58,10 +61,8 @@ function App() {
                 <Route path="actualizar" element={<ActualizarRuta />} />
                 <Route path="eliminar" element={<EliminarRuta />} />
               </Route>
-              <Route path="*" element={<Forbidden />}/>
-            </Route>
-            
-          </Routes>
+            </Routes>
+          </ReportsProvider>
         </AuthProvider>
       </BrowserRouter>
     </>

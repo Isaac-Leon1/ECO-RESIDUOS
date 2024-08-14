@@ -4,7 +4,7 @@ import Alert from "../components/Alert";
 import { Link, useParams } from "react-router-dom";
 
 const EmailConfirmado = () => {
-	const { token } = useParams();
+	const { tipo, token } = useParams();
 
 	const [alert, setAlert] = useState({
 		message: [],
