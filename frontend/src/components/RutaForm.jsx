@@ -147,7 +147,6 @@ export default function RutaForm({ type, setRutaUpdate, rutaUpdate = {} }) {
           : error.response.data.msg,
         exito: false,
       });
-
       setTimeout(() => {
         setAlert("");
       }, 2000);
@@ -298,7 +297,7 @@ export default function RutaForm({ type, setRutaUpdate, rutaUpdate = {} }) {
           <div>
             <h3 className="my-4 font-bold text-gray-900">Días</h3>
             <ul className="w-48 text-sm font-medium text-gray-900 bg-white">
-              {["Lunes", "Martes", "Miércoles", "Jueves", "Viernes","Sábado"].map(
+              {["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"].map(
                 (day) => (
                   <li key={day} className="w-full">
                     <div className="flex items-center ps-3">

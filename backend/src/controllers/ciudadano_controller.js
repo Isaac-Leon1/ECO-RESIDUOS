@@ -23,7 +23,6 @@ const registro = async (req,res)=>{
         password,
         telefono
     })
-    
     usuario.password = await usuario.encrypPassword(password)
     const token = usuario.crearToken()
     await usuario.save()
