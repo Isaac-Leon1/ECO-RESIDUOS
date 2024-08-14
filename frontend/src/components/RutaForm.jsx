@@ -141,13 +141,13 @@ export default function RutaForm({ type, setRutaUpdate, rutaUpdate = {} }) {
         setAlert("");
       }, 2000);
     } catch (error) {
-      
       setAlert({
         message: error.response.data.errors
           ? error.response.data.errors[0].msg
           : error.response.data.msg,
         exito: false,
       });
+
       setTimeout(() => {
         setAlert("");
       }, 2000);
