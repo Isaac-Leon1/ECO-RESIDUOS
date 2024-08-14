@@ -14,7 +14,7 @@ const EmailConfirmado = () => {
 	useEffect(() => {
 		const confirmarEmail = async () => {
 			try {
-				const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/confirmar/${token}`);
+				const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/ciudadano/verify/${token}`);
 				setAlert({ message: response.data.msg, exito: true });
 			} catch (error) {
 				setAlert({ message: error.response.data.msg, exito: false });
