@@ -17,6 +17,7 @@ const EmailConfirmado = () => {
 				const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/confirmar/${token}`);
 				setAlert({ message: response.data.msg, exito: true });
 			} catch (error) {
+				console.log(error);
 				setAlert({ message: error.response.data.msg, exito: false });
 			}
 		};
@@ -25,7 +26,7 @@ const EmailConfirmado = () => {
 
 	return (
 		<>
-			<div className="min-h-screen w-[25%] flex flex-col justify-center items-center gap-4">
+			<div className="min-h-screen w-full flex flex-col justify-center items-center gap-4">
 				<img src="/public/logo.png" className="w-80 mx-auto pb-10"></img>
 				<h1 className="text-[#06457C] text-[36px] font-bold text-center">
 					Email confirmado
@@ -39,7 +40,7 @@ const EmailConfirmado = () => {
 				</p>
 				<Link
 					to="/login"
-					className="text-center bg-[#06457C] text-white rounded-lg p-3 w-full"
+					className="text-center bg-[#06457C] text-white rounded-lg p-3 "
 				>
 					Iniciar sesión
 				</Link>

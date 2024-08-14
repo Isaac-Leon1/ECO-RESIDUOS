@@ -68,6 +68,7 @@ const login = async (req,res)=>{
 
 const verificarToken = async (req, res)=>{
     const {token} = req.params
+    console.log(token)
     const usuario = await Usuarios.findOne({token})
     if(!usuario) return res.status(400).json({msg:"Lo sentimos, el token no es válido"})
     usuario.confirmEmail = true

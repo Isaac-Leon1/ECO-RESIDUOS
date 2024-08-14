@@ -29,7 +29,8 @@ const RegistroCiudadano = () => {
         `${import.meta.env.VITE_BACKEND_URL}/ciudadano/register`,
         form
       );
-      setAlert({ message: response.data.res, exito: true });
+      console.log(response.data);
+      setAlert({ message: [response.data], exito: true });
     } catch (error) {
       const response = error.response.data;
       const mensaje = response.errors || response;
@@ -253,7 +254,8 @@ const RegistroCiudadano = () => {
             </p>
             {alert.message.length > 0 && (
               alert.message.map((error, index) => (
-                <Alert key={index} exito={alert.exito}>{error.msg}</Alert>
+
+                <Alert key={index} exito={alert.exito}>{error.msg || error.res}</Alert>
               ))
             )}
           </form>
