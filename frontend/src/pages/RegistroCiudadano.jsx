@@ -31,14 +31,25 @@ const RegistroCiudadano = () => {
       );
       setAlert({ message: response.data.res, exito: true });
     } catch (error) {
-      const arregloErrores = [...error.response.data.errors];
-      const errores = [];
-      arregloErrores.forEach((error) => {
-        if (!errores.find((e) => e?.msg === error.msg)) {
-          errores.push(error);
-        }
-      })
-      setAlert({ message: errores, exito: false });
+      const response = error.response.data;
+      const mensaje = response.errors || response;
+      
+      
+      if (mensaje.length > 0) {
+
+        const arregloErrores = [...mensaje];
+        
+        const errores = [];
+        arregloErrores.forEach((error) => {
+          if (!errores.find((e) => e?.msg === error.msg)) {
+            errores.push(error);
+          }
+        })
+
+        setAlert({ message: errores, exito: false });
+        return;
+      }
+      setAlert({ message: [mensaje], exito: false });
     }
   };
 
