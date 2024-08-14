@@ -141,6 +141,7 @@ export default function RutaForm({ type, setRutaUpdate, rutaUpdate = {} }) {
         setAlert("");
       }, 2000);
     } catch (error) {
+      
       setAlert({
         message: error.response.data.errors
           ? error.response.data.errors[0].msg
@@ -297,7 +298,7 @@ export default function RutaForm({ type, setRutaUpdate, rutaUpdate = {} }) {
           <div>
             <h3 className="my-4 font-bold text-gray-900">Días</h3>
             <ul className="w-48 text-sm font-medium text-gray-900 bg-white">
-              {["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"].map(
+              {["Lunes", "Martes", "Miércoles", "Jueves", "Viernes","Sábado"].map(
                 (day) => (
                   <li key={day} className="w-full">
                     <div className="flex items-center ps-3">
