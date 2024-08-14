@@ -105,6 +105,7 @@ const ReportsProvider = ({ children }) => {
         <ReportsContext.Provider
             value={{
                 reports,
+                setReports,
                 alert,
                 handleGetReports,
                 handleDeleteReport,

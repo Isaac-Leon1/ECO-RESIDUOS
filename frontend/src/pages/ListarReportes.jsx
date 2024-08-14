@@ -8,9 +8,11 @@ import Alert from "../components/Alert";
 
 export default function ListarReportes() {
     const { auth } = useContext(AuthContext);
-    const { reports, alert, handleGetReportsByCitizen } = useContext(ReportsContext);
+    const { reports,setReports, alert, handleGetReportsByCitizen } = useContext(ReportsContext);
+    
     console.log("longitud reportes ->||", reports.length);
     useEffect(() => {
+        setReports([]);
         const obtenerReportesCiudadano = async () => {
             await handleGetReportsByCitizen(auth.id);
         }
