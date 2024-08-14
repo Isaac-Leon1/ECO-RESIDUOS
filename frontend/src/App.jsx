@@ -54,6 +54,9 @@ function App() {
                   </PrivateRouteWithRole>
                 }
               >
+                <Route index element={<div className="flex flex-col justify-center items-center"><span className="font-bold text-3xl">Selecciona una opción</span>
+                  <span>Aquí podras tener el control sobre todas las rutas de recolección disponibles.</span>
+                </div>} />
                 <Route path="registrar" element={<RegistrarRuta/>} />
                 <Route path="actualizar" element={<ActualizarRuta />} />
                 <Route path="eliminar" element={<EliminarRuta />} />
